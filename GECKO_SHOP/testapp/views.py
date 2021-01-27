@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.http import HttpResponse
+from django.shortcuts import render
+
 import time
 
 
@@ -9,3 +11,6 @@ def home(request):
 
 def datetime(request):
     return HttpResponse(time.strftime("%I:%M:%S"))
+
+def page(request):
+    return render(request, 'index.html')

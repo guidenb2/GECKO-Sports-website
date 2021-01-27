@@ -1,10 +1,14 @@
-<!DOCTYPE html>
-<head>
-    <title>Test Page</title>
-    <h1>Who are we?</h1>
-    <h4>1. Harish Naryanan</h4>
-    <h4>2. Ben Guiden</h4>
-</head>
+{% extends "base.html" %}
 
-<body>This is our Django Project</body>
-</html>
+{% block title %}Test Page{% endblock %}
+
+{% block content %}
+<h1>Who are we?</h1>
+    <h4>
+        <ol>
+            <li>Harish Naryanan</li>
+            <li>Ben Guiden</li>
+        </ol>
+    </h4>
+<p>This is our Django Project</p>
+{% endblock %}

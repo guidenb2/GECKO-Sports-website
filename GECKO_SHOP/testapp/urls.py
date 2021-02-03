@@ -9,6 +9,7 @@ urlpatterns = [
     # and the app will retrieve the result from the execution of the datetime function (views.datetime)
     path('current/', views.datetime, name='datetime'),
 
+    path('home/', views.homepage, name='homepage'),
 
-    path('testpage/', views.page, name='testpage')
+    path('about/', views.about, name='about'),
 ]

@@ -12,5 +12,8 @@ def home(request):
 def datetime(request):
     return HttpResponse(time.strftime("%I:%M:%S"))
 
-def page(request):
+def homepage(request):
     return render(request, 'index.html')
+
+def about(request):
+    return render(request, 'about.html')

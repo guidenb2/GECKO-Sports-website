@@ -1,10 +1,8 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
+from .models import *
 from django.contrib import admin
-
 # Register your models here.
-from django.contrib import admin
-from .models import * # Add this import
-#admin.site.register(Product)
-#admin.site.register(<Another Model>)
+admin.site.register(Products)
+admin.site.register(Orders)
+admin.site.register(Stock)
+admin.site.register(Customers)
+admin.site.register(Category)

@@ -6,21 +6,22 @@ class Category(models.Model):
     cat_name = models.CharField(max_length=100)
 
 
-class Products(models.Model):
+class Product(models.Model):
     prod_id = models.AutoField(primary_key=True)
+    prod_name = models.CharField(max_length=100)
     unit_price = models.DecimalField(max_digits=6, decimal_places=2)
     cat_id = models.IntegerField()
 
 
 class Stock(models.Model):
-    prod_id = models.AutoField(primary_key=True)
+    prod_id = models.IntegerField(primary_key=True)
     description = models.CharField(max_length=5000)
     manufacturer = models.CharField(max_length=200)
     stock_level = models.IntegerField()
     next_shipment = models.DateField()
 
-class Customers(models.Model):
-    customer_id = models.IntegerField(primary_key=True)
+class Customer(models.Model):
+    customer_id = models.AutoField(primary_key=True)
     first_name = models.CharField(max_length=100)
     surname = models.CharField(max_length=100)
     phone_no = models.IntegerField()
@@ -28,8 +29,8 @@ class Customers(models.Model):
     eircode = models.CharField(max_length=10)
 
 
-class Orders(models.Model):
-    order_id = models.IntegerField()
+class Order(models.Model):
+    order_id = models.AutoField(primary_key=True)
     customer_id = models.IntegerField()
     date_placed = models.DateField()
     time_placed = models.TimeField()

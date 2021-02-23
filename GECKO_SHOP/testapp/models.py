@@ -9,6 +9,8 @@ class Category(models.Model):
 class Product(models.Model):
     prod_id = models.AutoField(primary_key=True)
     prod_name = models.CharField(max_length=100)
+    prod_desc = models.CharField(max_length=200)
+    prod_pic = models.CharField(max_length=150)
     unit_price = models.DecimalField(max_digits=6, decimal_places=2)
     cat_id = models.IntegerField()
 

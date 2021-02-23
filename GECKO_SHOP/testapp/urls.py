@@ -10,5 +10,6 @@ urlpatterns = [
     path('current/', views.datetime, name='datetime'),
     path('home/', views.homepage, name='homepage'),
     path('about/', views.about, name='about'),
-    path('error/', views.error, name='error')
+    path('error/', views.error, name='error'),
+    path('allproducts/', views.all_products, name="all_products")
 ]

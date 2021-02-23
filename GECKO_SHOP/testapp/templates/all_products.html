@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}All Products{% endblock %}
+
+{% block navAllProducts %}active{% endblock %}
+
+{% block content %}
+    {% for p in products %}
+        <br/>
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="{{ p.prod_pic }}" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">{{ p.prod_name }}</h5>
+                <p class="card-text">{{ p.prod_desc }}</p>
+                <a href="#" class="btn btn-primary">€ {{ p.unit_price }}</a>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

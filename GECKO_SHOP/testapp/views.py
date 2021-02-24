@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.shortcuts import get_object_or_404
 from .models import *
 
 import time
@@ -27,3 +28,8 @@ def error(request):
 def all_products(request):
     all_p = Product.objects.all()
     return render(request, 'all_products.html', {'products': all_p})
+
+
+def singleproduct(request, prod_id):
+    prod = get_object_or_404(Product, pk=prod_id)
+    return render(request, 'single_product.html', {'product': prod})

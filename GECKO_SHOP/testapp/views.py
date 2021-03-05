@@ -35,6 +35,11 @@ def singleproduct(request, prod_id):
     prod = get_object_or_404(Product, pk=prod_id)
     return render(request, 'single_product.html', {'product': prod})
 
+
+def customer_reviews(request):
+    reviews = Reviews.objects.all()
+    return render(request, 'reviews.html', {'reviews': reviews})
+
 def myform(request):
     if request.method == 'POST':
         form = ProductForm(request.POST)

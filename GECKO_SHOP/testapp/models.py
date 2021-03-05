@@ -40,3 +40,6 @@ class Order(models.Model):
     prod_id = models.IntegerField()
 
 
+class Reviews(models.Model):
+    review_id = models.AutoField(primary_key=True)
+    review = models.CharField(max_length=500)

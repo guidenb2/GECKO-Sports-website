@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+{% block title %}
+    Reviews
+{% endblock %}
+
+{% block navAllProducts %}
+    active
+{% endblock %}
+
+{% block content %}
+    {% for item in reviews %}
+        {% if "best" in item.review %}
+            <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong>Customer {{item.review_id}}</strong> {{item.review}}
+            </div>
+        {% else %}
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong>Customer {{item.review_id}}</strong> {{item.review}}
+            </div>
+        {% endif %}}
+    {% endfor %}
+{% endblock %}

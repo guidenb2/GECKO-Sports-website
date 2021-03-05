@@ -5,11 +5,11 @@
 {% block content %}
     <br/>
     <div class="card" style="width: 20rem;">
-        <h5 class="card-header text-center">{{ product.prod_name }}</h5>
-        <img class="card-img-top" src="{{ product.prod_pic }}" alt="Card image cap">
+        <h5 class="card-header text-center">{{ product.name }}</h5>
+        <img class="card-img-top" src="#" alt="Card image cap">
         <div class="card-body">
-            <p class="card-text">{{ product.prod_desc }}</p>
-            <a href="#" class="btn btn-primary">{{ product.unit_price }}</a>
+            <p class="card-text">{{ product.description }}</p>
+            <a href="#" class="btn btn-primary">{{ product.price }}</a>
         </div>
     </div>
 {% endblock %}

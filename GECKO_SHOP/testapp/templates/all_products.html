@@ -8,11 +8,11 @@
     {% for p in products %}
         <br/>
         <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="{{ p.prod_pic }}" alt="Card image cap">
+            <img class="card-img-top" src="#" alt="Card image cap">
             <div class="card-body" align="center">
-                <h5 class="card-title">{{ p.prod_name }}</h5>
-                <p class="card-text">{{ p.prod_desc }}</p>
-                <a href="../singleproduct/{{ p.prod_id }}" class="btn btn-primary">€ {{ p.unit_price }}</a>
+                <h5 class="card-title">{{ p.name }}</h5>
+                <p class="card-text">{{ p.description }}</p>
+                <a href="../singleproduct/{{ p.id }}" class="btn btn-primary">€ {{ p.price }}</a>
             </div>
         </div>
     {% endfor %}

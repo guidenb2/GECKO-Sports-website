@@ -25,6 +25,9 @@
                 <li class="nav-item {% block navAllProducts %}{% endblock %}">
                     <a class="nav-link" href="../allproducts">Products</a>
                 </li>
+                <li class="nav-item {% block navReviews %}{% endblock %}">
+                    <a class="nav-link" href="../reviews">Reviews</a>
+                </li>
                 </ul>
                 <span class="navbar-text">
                     {% if user.is_authenticated %}

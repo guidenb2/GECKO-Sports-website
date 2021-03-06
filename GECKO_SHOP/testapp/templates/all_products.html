@@ -5,6 +5,12 @@
 {% block navAllProducts %}active{% endblock %}
 
 {% block content %}
+<div class="alert alert-success alert-dismissible w-25" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button><strong>Total Results:</strong> {{count}}
+</div>
+
     {% for p in products %}
         <br/>
         <div class="card" style="width: 18rem;">

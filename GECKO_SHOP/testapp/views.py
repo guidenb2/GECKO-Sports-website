@@ -57,7 +57,8 @@ def error(request):
 
 def all_products(request):
     all_p = Product.objects.all()
-    return render(request, 'all_products.html', {'products': all_p})
+    total = Product.objects.all().count()
+    return render(request, 'all_products.html', {'products': all_p, 'count': total})
 
 
 def singleproduct(request, prod_id):

@@ -14,6 +14,7 @@ class Product(models.Model):
     description = models.CharField(max_length=200)
     price = models.DecimalField(max_digits=6, decimal_places=2)
     category_id = models.IntegerField()
+    picture = models.FileField(upload_to='product_img/', blank=True)
 
 
 # class Customer(models.Model):

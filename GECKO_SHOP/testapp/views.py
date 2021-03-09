@@ -89,3 +89,9 @@ def logout_view(request):
 def customer_reviews(request):
     reviews = Reviews.objects.all()
     return render(request, 'reviews.html', {'reviews': reviews})
+
+
+def all_orders(request):
+    all_ords = Order.objects.all()
+    total = Order.objects.all().count()
+    return render(request, 'orders.html', {'orders': all_ords, 'count': total})

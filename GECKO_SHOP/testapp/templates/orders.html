@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Orders Placed{% endblock %}
+
+{% block navOrders %}active{% endblock %}
+
+{% block content %}
+<div class="alert alert-success alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button><strong>Total Orders:</strong> {{count}}
+</div>
+
+    <div class="container">
+        <div class="row align-items-center">
+    {% for order in orders %}
+            <div class="col-lg-4 d-flex align-items-stretch">
+                <div class="card bg-dark border-light text-white flex-fill" style="width: 14rem; height: 40rem; margin-top: 20px; margin-bottom: 10px; margin-left: 10px">
+                    <img src={{order.product.picture.url}} class="card-img-top" style="height: 20rem; object-fit: cover" alt={{item.customer_name}}>
+                    <div class="card-body">
+                        <p class="card-text" style="text-align: center"><strong>{{order.id}}</strong><br></p>
+                        <p class="card-text" style="text-align: center">Product: {{order.product}}<br>Quantity {{ order.quantity }}</p>
+                    </div>
+                </div>
+            </div>
+    {% endfor %}
+        </div>
+    </div>
+{% endblock %}

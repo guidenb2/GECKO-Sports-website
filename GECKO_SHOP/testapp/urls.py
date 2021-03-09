@@ -18,5 +18,5 @@ urlpatterns = [
     path('adminsignup/', views.AdminSignupView.as_view(), name="Admin register"),
     path('login/', views.Login.as_view(template_name="login.html", authentication_form=UserLoginForm), name='login'),
     path('logout/', views.logout_view, name="logout"),
-    path('reviews/', views.customer_reviews, name="reviews"),
+    path('reviews/', views.customer_reviews, name="reviews")
 ]

@@ -68,7 +68,7 @@ def singleproduct(request, prod_id):
 
 def productform(request):
     if request.method == 'POST':
-        form = ProductForm(request.POST)
+        form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
             new_product = form.save()
             return render(request, 'single_product.html', {'product:': new_product })

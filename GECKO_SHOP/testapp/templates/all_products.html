@@ -14,7 +14,7 @@
     {% for p in products %}
         <br/>
         <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="#" alt="Card image cap">
+            <img class="card-img-top" src="{{ p.picture.url }}" alt="Card image cap">
             <div class="card-body" align="center">
                 <h5 class="card-title">{{ p.name }}</h5>
                 <p class="card-text">{{ p.description }}</p>

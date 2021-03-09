@@ -16,7 +16,7 @@ class UserLoginForm(AuthenticationForm):
 class ProductForm(ModelForm):
     class Meta:
         model = Product
-        fields = ['name', 'description', 'price', 'category_id']
+        fields = ['name', 'description', 'price', 'category_id', 'picture']
 
 
 class CASignupForm(UserCreationForm):

@@ -3,38 +3,38 @@
 {% block title %}User Signup{% endblock %}
 
 {% block content %}
-<div class="row">
-    <div class="col-sm-6">
-        <!------ SignUp Card ------->
-        <form action="." method="POST">
-            {% csrf_token %}
-            <div class="card" style="margin-left: 27rem; margin-top: 15.5rem; width: 25rem">
-                <h5 class="card-header" style="text-align: center; color: dodgerblue"><strong>Sign-Up 📝</strong></h5>
-                <div class="card-body">
-                    <p class="card-text" style="text-align: center"><strong>Username:</strong> {{form.username}}</p>
-                    <p class="card-text" style="text-align: center"><strong>Password:</strong> {{form.password1}}</p>
-                    <p class="card-text" style="text-align: center"><strong>Confirm Password:</strong> {{form.password2}}</p>
-                    <button class="btn btn-success" type="submit" style="margin-left: 7.5rem;">SUBMIT</button>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 mb-2">
+            <!------ SignUp Card ------->
+            <form action="." method="POST">
+                {% csrf_token %}
+                <div class="card" style="margin-left:5rem; margin-top: 15rem; width: 25rem">
+                    <h5 class="card-header" style="text-align: center; color: dodgerblue"><strong>Sign-Up 📝</strong></h5>
+                    <div class="card-body">
+                        <p class="card-text" style="text-align: center"><strong>Username:</strong> {{form.username}}</p>
+                        <p class="card-text" style="text-align: center"><strong>Password:</strong> {{form.password1}}</p>
+                        <p class="card-text" style="text-align: center"><strong>Confirm Password:</strong> {{form.password2}}</p>
+                        <button class="btn btn-success" type="submit" style="margin-left: 7.5rem;">SUBMIT</button>
+                    </div>
                 </div>
-            </div>
-        </form>
-    </div>
+            </form>
+        </div>
 
     <!------ Password Requirements Card ------->
-    <div class="col-sm-6">
-        <div class="card " style="margin-top: 16.6rem; width: 32rem">
-            <div class="card-header" style="text-align: center; color: orangered">
-                <strong>Password Requirements 🔑</strong>
-            </div>
-            <div class="card-body">
-                <ol class="card-text">
-                    <li>150 characters or fewer. Letters, digits and @/./+/-/_ only.</li>
-                    <li>Your password can’t be too similar to your other personal information.</li>
-                    <li>Your password must contain <strong>at least 8 characters</strong>.</li>
-                    <li>Your password can’t be a commonly used password.</li>
-                    <li>Your password can’t be entirely numeric.</li>
-                </ol>
-            </div>
+        <div class="card" style="margin-top: 15rem; width: 32rem">
+               <div class="card-header" style="text-align: center; color: orangered">
+                  <strong>Password Requirements 🔑</strong>
+               </div>
+               <div class="card-body">
+                  <ol class="card-text">
+                      <li>150 characters or fewer. Letters, digits and @/./+/-/_ only.</li>
+                      <li>Your password can’t be too similar to your other personal information.</li>
+                      <li>Your password must contain <strong>at least 8 characters</strong>.</li>
+                      <li>Your password can’t be a commonly used password.</li>
+                      <li>Your password can’t be entirely numeric.</li>
+                  </ol>
+               </div>
         </div>
     </div>
 </div>

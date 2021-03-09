@@ -11,15 +11,19 @@
     </button><strong>Total Results:</strong> {{count}}
 </div>
 
-    {% for p in products %}
-        <br/>
-        <div class="card" style="width: 18rem;">
-            <img class="card-img-top" src="{{ p.picture.url }}" alt="Card image cap">
-            <div class="card-body" align="center">
-                <h5 class="card-title">{{ p.name }}</h5>
-                <p class="card-text">{{ p.description }}</p>
-                <a href="../singleproduct/{{ p.id }}" class="btn btn-primary">€ {{ p.price }}</a>
+    <div class="container">
+        <div class="row align-items-center">
+    {% for product in products %}
+            <div class="col-lg-4 d-flex align-items-stretch">
+                <div class="card bg-dark border-light text-white flex-fill" style="width: 14rem; height: 40rem; margin-top: 20px; margin-bottom: 10px; margin-left: 10px">
+                    <img src={{product.picture.url}} class="card-img-top" style="height: 20rem; object-fit: cover" alt={{item.customer_name}}>
+                    <div class="card-body">
+                        <p class="card-text" style="text-align: center"><strong>{{product.name}}</strong><br><a href="../singleproduct/{{ product.id }}" class="btn btn-primary">€ {{ product.price }}</a></p>
+                        <p class="card-text" style="text-align: center">{{product.description}}</p>
+                    </div>
+                </div>
             </div>
-        </div>
     {% endfor %}
+        </div>
+    </div>
 {% endblock %}

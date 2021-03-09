@@ -49,5 +49,5 @@ class Reviews(models.Model):
     review_id = models.AutoField(primary_key=True)
     customer_pic = models.CharField(max_length=500)
     customer_name = models.CharField(max_length=40, default=True)
-    role = models.CharField(max_length=40);
+    role = models.CharField(max_length=40)
     review = models.CharField(max_length=500)

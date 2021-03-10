@@ -3,9 +3,9 @@ from django.contrib.auth.models import AbstractUser
 
 
 # Create your models here.
-class Category(models.Model):
-    cat_id = models.AutoField(primary_key=True)
-    cat_name = models.CharField(max_length=100)
+class ProductCategory(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=100)
 
 
 class Product(models.Model):
@@ -13,7 +13,7 @@ class Product(models.Model):
     name = models.CharField(max_length=100)
     description = models.CharField(max_length=200)
     price = models.DecimalField(max_digits=6, decimal_places=2)
-    category_id = models.IntegerField()
+    category = models.ForeignKey(ProductCategory, on_delete=models.CASCADE)
     picture = models.FileField(upload_to='product_img/', blank=True)
 
 

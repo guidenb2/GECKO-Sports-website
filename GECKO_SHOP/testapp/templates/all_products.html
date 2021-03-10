@@ -19,10 +19,9 @@
                     <img src={{product.picture.url}} class="card-img-top" style="height: 20rem; object-fit: cover" alt={{item.customer_name}}>
                     <div class="card-body">
                         <p class="card-text" style="text-align: center; margin-top: 0.5rem">
-                            <strong>{{product.name}}</strong><br>
-                            <a href="../singleproduct/{{ product.id }}" class="btn btn-primary" style="margin-top: 2rem;">€ {{ product.price }}</a></p>
-
-                        <p class="card-text" style="text-align: center">{{product.description}}</p>
+                            <strong>{{product.name}}</strong><br></p>
+                            <p class="card-text" style="text-align: center">{{product.description}}</p>
+                        <div class="text-center"><a href="../singleproduct/{{ product.id }}" class="btn btn-primary" style="margin-top: 2rem;">€ {{ product.price }}</a></div>
                     </div>
                 </div>
             </div>

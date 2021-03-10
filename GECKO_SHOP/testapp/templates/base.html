@@ -30,7 +30,12 @@
                 </li>
                 <li class="nav-item {% block navOrders %}{% endblock %}">
                     {% if user.is_admin %}
-                        <a class="nav-link" href="../orders"><strong>Orders</strong></a>
+                        <a class="nav-link" href="../orders" style="color: orangered"><strong>Orders</strong></a>
+                    {% endif %}
+                </li>
+                <li class="nav-item {% block navInventory %}{% endblock %}">
+                    {% if user.is_admin %}
+                        <a class="nav-link" href="../productform" style="color: navy"><strong>Inventory</strong></a>
                     {% endif %}
                 </li>
                 </ul>

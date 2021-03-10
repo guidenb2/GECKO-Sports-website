@@ -3,9 +3,50 @@
 {% block title %}Form{% endblock %}
 
 {% block content %}
+
+
+<form action="/productform/" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="card" style="width: 22rem; justify-content: center; margin-top: 15rem; margin-left: 44rem">
+        <div class="card-header" style="color: brown; text-align: center">
+            <strong>Add Items to Inventory 🛒📥</strong>
+        </div>
+      <div class="card-body" style="text-align: center">
+          <p class="card-text"><strong>Name:</strong> {{form.name}}</p>
+          <p class="card-text"><strong>Description:</strong> {{form.description}}</p>
+          <p class="card-text"><strong>Price:</strong> {{form.price}}</p>
+          <p class="card-text"><strong>Category:</strong> {{form.category}}</p>
+          <p class="card-text"><strong>Picture:</strong> {{form.picture}}</p>
+          <input type="submit" value="Submit">
+      </div>
+    </div>
+</form>
+{% endblock %}
+
+
+<!---------
+
+    <form>
+    <div class="card" style="width: 22rem; justify-content: center; margin-top: 15rem; margin-left: 44rem">
+        <div class="card-header" style="color: brown; text-align: center">
+            <strong>Add Items to Inventory 🛒📥</strong>
+        </div>
+      <div class="card-body" style="text-align: center">
+          <p class="card-text"><strong>Name:</strong> {{form.name}}</p>
+          <p class="card-text"><strong>Description:</strong> {{form.description}}</p>
+          <p class="card-text"><strong>Price:</strong> {{form.price}}</p>
+          <p class="card-text"><strong>Category:</strong> {{form.category}}</p>
+          <p class="card-text"><strong>Picture:</strong> {{form.picture}}</p>
+          <input type="submit" value="Submit">
+      </div>
+    </div>
+</form>
+
+
     <form action="/productform/" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_table }}
         <input type="submit" value="Submit">
     </form>
-{% endblock %}
+
+----------->

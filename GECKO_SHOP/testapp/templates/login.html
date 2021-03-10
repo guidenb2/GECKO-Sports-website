@@ -5,9 +5,24 @@
 {% endblock %}
 
 {% block content %}
+<form action="." method="POST">
+    {% csrf_token %}
+    <div class="card" style="margin-top: 13rem; margin-left: 34rem; width: 25rem">
+        <h5 class="card-header" style="text-align: center"><strong>Login ✅</strong></h5>
+        <div class="card-body" style="text-align: center">
+            <p class="card-text"><strong>Username:</strong> {{form.username}}</p>
+            <p class="card-text"><strong>Password:</strong> {{form.password}}</p>
+            <button class="btn btn-success" type="submit">LOGIN</button>
+        </div>
+    </div>
+</form>
+{% endblock %}
+
+<!---------- Original Version -------->
+<!-----------
     <form action="." method="POST">
     {% csrf_token %}
     {{ form.as_table }}
     <button type="submit">SUBMIT</button>
     </form>
-{% endblock %}
+---------->

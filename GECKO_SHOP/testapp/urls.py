@@ -19,5 +19,6 @@ urlpatterns = [
     path('login/', views.Login.as_view(template_name="login.html", authentication_form=UserLoginForm), name='login'),
     path('logout/', views.logout_view, name="logout"),
     path('reviews/', views.customer_reviews, name="reviews"),
-    path('orders/', views.all_orders, name="all_orders")
+    path('orders/', views.all_orders, name="all_orders"),
+    path('cart/', views.basket, name="basket")
 ]

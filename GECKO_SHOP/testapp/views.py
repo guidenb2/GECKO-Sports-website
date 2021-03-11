@@ -95,3 +95,7 @@ def all_orders(request):
     all_ords = Order.objects.all()
     total = Order.objects.all().count()
     return render(request, 'orders.html', {'orders': all_ords, 'count': total})
+
+
+def basket(request):
+    return render(request, 'basket.html')

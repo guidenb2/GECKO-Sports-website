@@ -11,7 +11,6 @@ urlpatterns = [
     path('about/', views.about, name='about'),
     path('error/', views.error, name='error'),
     path('allproducts/', views.all_products, name="all_products"),
-    path('reviews/', views.customer_reviews, name="reviews"),
     path('singleproduct/<int:prod_id>', views.singleproduct, name="product_single"),
     path('productform/', views.productform),
     path('usersignup/', views.CaUserSignupView.as_view(), name="register"),

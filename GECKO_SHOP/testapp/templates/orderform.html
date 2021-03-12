@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Complete Order{% endblock %}
+
+{% block navAbout %}active{% endblock %}
+
+{% block content %}
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">Product</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in items %}
+            <tr>
+                <th scope="row">{{ i.product.name }}</th>
+                <td>{{ i.product.price }}</td>
+                <td>{{ i.quantity }}</td>
+                <td>{{ i.price }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <form action="." method="POST">
+    {% csrf_token %}
+    {{ form.as_table }}
+    <input type="submit" value="Submit">
+    </form>
+{% endblock %}

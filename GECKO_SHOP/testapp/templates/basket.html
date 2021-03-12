@@ -6,7 +6,28 @@
 
 
 {% block content %}
-<div class="mb-3">
+        <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">Product</th>
+                <th scope="col">Price</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in basket %}
+            <tr>
+                <td>{{ i.product.name }}</td>
+                <td>{{ i.product.price }}</td>
+                <td>{{ i.quantity }}</td>
+                <td>{{ i.price }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a class="btn btn-warning" href="../basket" role="button">🛍️Buy Now</a>
+    <div class="mb-3">
         <div class="pt-4">
 
           <h5 class="mb-4">We accept</h5>

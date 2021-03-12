@@ -1,14 +1,21 @@
 {% extends 'base.html' %}
 
-{% block title %}{{ product.prod_name }}{% endblock %}
+{% block title %}{{ product.name }}{% endblock %}
 
 {% block content %}
+    {% if added %}
+        <div class="alert alert-success alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button><strong>{{ product.name }} added to basket</strong>
+        </div>
+    {% endif %}
     <div class="text-center"><h1 class="display-4">{{ product.name }}</h1></div>
 
     <img src="{{ product.picture.url }}" width="500px" class="rounded float-left" alt="...">
     <br>
     <div class="text-center">
-    <p>{{ product.description }}</p>
-    <a href="#" class="btn btn-primary">{{ product.price }}</a>
+        <p>{{ product.description }}</p>
+        <a href="/addbasket/{{ product.id }}" class="btn btn-primary">{{ product.price }}</a>
     </div>
 {% endblock %}

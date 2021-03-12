@@ -14,19 +14,19 @@
 <table class="table table-bordered table-striped table-hover">
     <thead class = "thead-dark">
         <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Product</th>
-            <th scope="col">Quantity</th>
-            <th scope="col">Price</th>
+            <th scope="col">Order ID</th>
+            <th scope="col">Date of Placement</th>
+            <th scope="col">Shipping Address</th>
+            <th scope="col">Customer ID</th>
         </tr>
     </thead>
     <tbody>
         {% for order in orders %}
         <tr>
-            <th scope="row">{{ order.order_id }}</th>
-            <td>{{ order.product.name }}</td>
-            <td>{{ order.quantity }}</td>
-            <td>{{ order.price }}</td>
+            <th scope="row">{{ order.id }}</th>
+            <td>{{ order.date_created }}</td>
+            <td>{{ order.shipping_addr }}</td>
+            <td>{{ order.user_id_id }}</td>
         </tr>
         {% endfor %}
     </tbody>

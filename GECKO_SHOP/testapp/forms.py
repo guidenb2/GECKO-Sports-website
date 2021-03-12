@@ -1,5 +1,5 @@
 from django.forms import ModelForm, ModelChoiceField
-from .models import Product, CaUser, ProductCategory
+from .models import Product, CaUser, ProductCategory, Order
 from django.contrib.auth.forms import UserCreationForm
 from django.db import transaction
 from django import forms
@@ -47,3 +47,10 @@ class AdminSignupForm(UserCreationForm):
         user.is_admin = True
         user.save()
         return user
+
+
+class OrderForm(ModelForm):
+    shipping_addr = forms.CharField(label="Shipping Address", widget=forms.TextInput())
+    class Meta:
+        model = Order
+        fields = ['shipping_addr']

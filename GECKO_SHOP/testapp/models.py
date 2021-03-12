@@ -17,32 +17,37 @@ class Product(models.Model):
     picture = models.FileField(upload_to='product_img/', blank=True)
 
 
-# class Customer(models.Model):
-# customer_id = models.AutoField(primary_key=True)
-# first_name = models.CharField(max_length=100)
-# surname = models.CharField(max_length=100)
-# phone_no = models.IntegerField()
-# email = models.CharField(max_length=100)
-# eircode = models.CharField(max_length=10)
+class CaUser(AbstractUser):
+    is_admin = models.BooleanField(default=False)
 
 
 class Order(models.Model):
-    order_id = models.AutoField(primary_key=True)
+    id = models.AutoField(primary_key=True)
+    user_id = models.ForeignKey(CaUser, on_delete=models.CASCADE)
+    date_created = models.DateField(auto_now_add=True)
+    shipping_addr = models.CharField(max_length=500)
+
+
+class OrderItems(models.Model):
+    id = models.AutoField(primary_key=True)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.IntegerField()
-
-    # customer_id = models.IntegerField()
-    # date_placed = models.DateField()
-    # time_placed = models.TimeField()
-    # total_value = models.DecimalField(max_digits=5, decimal_places=2)
-    # prod_id = models.IntegerField()
+    order_id = models.ForeignKey(Order, on_delete=models.CASCADE)
 
     def price(self):
         return self.product.price * self.quantity
 
 
-class CaUser(AbstractUser):
-    is_admin = models.BooleanField(default=False)
+class ShoppingBasket(models.Model):
+    id = models.AutoField(primary_key=True)
+    user_id = models.OneToOneField(CaUser, on_delete=models.CASCADE)
+
+
+class ShoppingBasketItems(models.Model):
+    id = models.AutoField(primary_key=True)
+    basket_id = models.ForeignKey(ShoppingBasket, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    quantity = models.IntegerField(default=1)
 
 
 class Reviews(models.Model):

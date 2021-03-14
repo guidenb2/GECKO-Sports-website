@@ -94,12 +94,15 @@ def customer_reviews(request):
     return render(request, 'reviews.html', {'reviews': reviews})
 
 
+@login_required
+@user_passes_test(lambda u: u.is_admin)
 def all_orders(request):
     all_ords = Order.objects.all()
     total = Order.objects.all().count()
     return render(request, 'orders.html', {'orders': all_ords, 'count': total})
 
 
+@login_required
 def basket(request):
     user = request.user
     shopping_basket = ShoppingBasket.objects.filter(user_id=user).first()

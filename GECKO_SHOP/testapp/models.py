@@ -34,9 +34,6 @@ class OrderItems(models.Model):
     quantity = models.IntegerField()
     order_id = models.ForeignKey(Order, on_delete=models.CASCADE)
 
-    def price(self):
-        return self.product.price * self.quantity
-
 
 class ShoppingBasket(models.Model):
     id = models.AutoField(primary_key=True)
@@ -49,6 +46,8 @@ class ShoppingBasketItems(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.IntegerField(default=1)
 
+    def price(self):
+        return self.product.price * self.quantity
 
 class Reviews(models.Model):
     review_id = models.AutoField(primary_key=True)

@@ -114,15 +114,19 @@ def basket(request):
 def add_to_basket(request, prodid):
     user = request.user
     shopping_basket = ShoppingBasket.objects.filter(user_id=user).first()
+
     if not shopping_basket:
         shopping_basket = ShoppingBasket(user_id=user).save()
+
     product = Product.objects.get(pk=prodid)
     sbi = ShoppingBasketItems.objects.filter(basket_id=shopping_basket.id, product_id=product.id).first()
+
     if sbi is None:
         sbi = ShoppingBasketItems(basket_id=shopping_basket, product_id=product.id).save()
     else:
         sbi.quantity = sbi.quantity + 1
         sbi.save()
+
     return render(request, 'single_product.html', {'product': product, 'added': True})
 
 

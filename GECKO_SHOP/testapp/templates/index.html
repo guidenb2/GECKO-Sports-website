@@ -3,7 +3,6 @@
 {% block title %}Home{% endblock %}
 
 {% block navHome %}active{% endblock %}
-
 {% block content %}
     <table class="table table-dark">
         <thead>
@@ -45,7 +44,14 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
-    {% if user.is_authenticated %}
-        <h3>Hello {{ user.username }}</h3>
-    {% endif %}
+
+    <table class="table table-dark" style="margin-bottom: -5rem;">
+        <thead>
+        <tr>
+          <th style="width: 30%; text-align: center">ALL GIFT CARDS ACCEPTED</th>
+          <th style="text-align: center">T&C APPLY</th>
+          <th style="width: 30%; text-align: center">COVID RESTRICTIONS IN PLACE</th>
+        </tr>
+        </thead>
+    </table>
 {% endblock %}

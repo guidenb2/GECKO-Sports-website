@@ -117,6 +117,7 @@ def add_to_basket(request, prodid):
 
     if not shopping_basket:
         shopping_basket = ShoppingBasket(user_id=user).save()
+        shopping_basket = ShoppingBasket.objects.filter(user_id=user).first()
 
     product = Product.objects.get(pk=prodid)
     sbi = ShoppingBasketItems.objects.filter(basket_id=shopping_basket.id, product_id=product.id).first()

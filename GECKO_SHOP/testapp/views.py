@@ -106,8 +106,11 @@ def all_orders(request):
 def basket(request):
     user = request.user
     shopping_basket = ShoppingBasket.objects.filter(user_id=user).first()
-    sbi = ShoppingBasketItems.objects.filter(basket_id=shopping_basket.id)
-    return render(request, 'basket.html', {'basket': sbi})
+    if shopping_basket:
+        sbi = ShoppingBasketItems.objects.filter(basket_id=shopping_basket.id)
+        return render(request, 'basket.html', {'basket': sbi})
+    else:
+        return render(request, 'empty_basket.html')
 
 
 @login_required

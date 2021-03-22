@@ -6,7 +6,7 @@ from .forms import *
 from django.views.generic import CreateView
 from django.contrib.auth import login, logout
 from django.contrib.auth.views import LoginView, login_required
-from django.contrib.auth.decorators import user_passes_test
+from django.contrib.auth.decorators import user_passes_test, login_required
 
 import time
 
@@ -106,8 +106,11 @@ def all_orders(request):
 def basket(request):
     user = request.user
     shopping_basket = ShoppingBasket.objects.filter(user_id=user).first()
-    sbi = ShoppingBasketItems.objects.filter(basket_id=shopping_basket.id)
-    return render(request, 'basket.html', {'basket': sbi})
+    if shopping_basket:
+        sbi = ShoppingBasketItems.objects.filter(basket_id=shopping_basket.id)
+        return render(request, 'basket.html', {'basket': sbi})
+    else:
+        return render(request, 'empty_basket.html')
 
 
 @login_required
@@ -119,7 +122,7 @@ def add_to_basket(request, prodid):
         shopping_basket = ShoppingBasket(user_id=user).save()
         shopping_basket = ShoppingBasket.objects.filter(user_id=user).first()
 
-    product = Product.objects.get(pk=prodid)
+    product = get_object_or_404(Product, pk=prodid)
     sbi = ShoppingBasketItems.objects.filter(basket_id=shopping_basket.id, product_id=product.id).first()
 
     if sbi is None:

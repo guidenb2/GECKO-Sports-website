@@ -1,6 +1,8 @@
 from django.urls import path
 from . import views
 from .forms import *
+from django.contrib.auth.decorators import user_passes_test
+from .models import CaUser
 
 
 urlpatterns = [
@@ -15,7 +17,7 @@ urlpatterns = [
     path('singleproduct/<int:prod_id>', views.singleproduct, name="product_single"),
     path('productform/', views.productform),
     path('usersignup/', views.CaUserSignupView.as_view(), name="register"),
-    path('adminsignup/', views.AdminSignupView.as_view(), name="Admin register"),
+    path('adminsignup/', user_passes_test(lambda u: u.is_active and u.is_admin)(views.AdminSignupView.as_view()), name="Admin register"),
     path('login/', views.Login.as_view(template_name="login.html", authentication_form=UserLoginForm), name='login'),
     path('logout/', views.logout_view, name="logout"),
     path('reviews/', views.customer_reviews, name="reviews"),

@@ -2,8 +2,13 @@ from django.urls import path
 from . import views
 from .forms import *
 from django.contrib.auth.decorators import user_passes_test
+from .views import *
+from rest_framework import routers
 from .models import CaUser
 
+router = routers.DefaultRouter()
+router.register(r'users', UserViewSet) # when we go to /api/users - load the users json
+router.register(r'orders', OrderViewSet)
 
 urlpatterns = [
     path('', views.homepage, name='index'),
@@ -24,5 +29,7 @@ urlpatterns = [
     path('orders/', views.all_orders, name="all_orders"),
     path('cart/', views.basket, name="basket"),
     path('addbasket/<int:prodid>', views.add_to_basket, name="add_to_basket"),
-    path('basket/', views.order_form)
+    path('basket/', views.order_form),
+    path('api/', include(router.urls))
 ]
+

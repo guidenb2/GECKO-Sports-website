@@ -7,8 +7,11 @@ from django.views.generic import CreateView
 from django.contrib.auth import login, logout
 from django.contrib.auth.views import LoginView, login_required
 from django.contrib.auth.decorators import user_passes_test, login_required
-
+from django.core import serializers
+from django.http import HttpResponse
 import time
+from rest_framework import viewsets
+from .serializers import *
 
 
 # Create your views here.
@@ -59,7 +62,13 @@ def error(request):
 def all_products(request):
     all_p = Product.objects.all()
     total = Product.objects.all().count()
-    return render(request, 'all_products.html', {'products': all_p, 'count': total})
+    format = request.GET.get("format", '')
+
+    if format == "json":
+        products_serialised = serializers.serialize("json", all_p)
+        return HttpResponse(products_serialised, content_type="application/json")
+    else:
+        return render(request, 'all_products.html', {'products': all_p, 'count': total})
 
 
 def singleproduct(request, prod_id):
@@ -157,3 +166,12 @@ def order_form(request):
     else:
         form = OrderForm()
         return render(request, 'orderform.html', {'form': form, 'basket': shopping_basket, 'items': sbi})
+
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = CaUser.objects.all()
+    serializer_class = UserSerializer
+
+class OrderViewSet(viewsets.ModelViewSet):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer

@@ -172,6 +172,12 @@ class UserViewSet(viewsets.ModelViewSet):
     queryset = CaUser.objects.all()
     serializer_class = UserSerializer
 
+
 class OrderViewSet(viewsets.ModelViewSet):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
+
+
+class ProductViewSet(viewsets.ModelViewSet):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer

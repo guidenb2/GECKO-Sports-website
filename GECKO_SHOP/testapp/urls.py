@@ -9,6 +9,7 @@ from .models import CaUser
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet) # when we go to /api/users - load the users json
 router.register(r'orders', OrderViewSet)
+router.register(r'products', ProductViewSet)
 
 urlpatterns = [
     path('', views.homepage, name='index'),

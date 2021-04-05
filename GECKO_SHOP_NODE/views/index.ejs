@@ -4,13 +4,45 @@
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
+
   <body>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
+
+    <table id="product-table">
+      <thead>
+        <tr>
+          <td>Name</td>
+          <td>Description</td>
+          <td>Price</td>
+        </tr>
+      </thead>
+    </table>
+
     <script>
       fetch("http://localhost:8000/api/products/?format=json") // make a request
       .then(response => response.json()) // with our response, get the json data returned
-      .then(data => console.log(data)); // log the json data
+      .then(data =>{
+        console.log(data)
+        data.forEach(element =>{
+          let table = document.getElementById("product-table") // Fetch the table above
+          let newRow = document.createElement("tr") // Add in a row <tr></tr>
+          table.appendChild(newRow) // Add the new row to table
+
+          let name = document.createElement("td") // Create <td>Inner html</td>
+          name.innerHTML = element["name"]
+          newRow.appendChild(name)
+
+          let desc = document.createElement("td")
+          desc.innerHTML = element["description"]
+          newRow.appendChild(desc)
+
+          let price = document.createElement("td")
+          price.innerHTML = element["price"]
+          newRow.appendChild(price)
+        });
+      }); // log the json data
       </script>
+  
   </body>
 </html>

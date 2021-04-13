@@ -9,7 +9,7 @@ from rest_framework import serializers
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = CaUser
-        fields = '__all__'  # Note this is a double underscore !
+        fields = ['url', 'username', 'email', 'is_admin']
 
 
 # Orders
@@ -23,4 +23,4 @@ class OrderSerializer(serializers.HyperlinkedModelSerializer):
 class ProductSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Product
-        fields = ['id', 'name', 'description', 'price', 'picture']  # Note this is a double underscore !
+        fields = ['id', 'name', 'description', 'price', 'picture']

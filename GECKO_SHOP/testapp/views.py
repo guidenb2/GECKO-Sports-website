@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+from tokenize import Token
+
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import *
@@ -7,7 +9,7 @@ from django.views.generic import CreateView
 from django.contrib.auth import login, logout
 from django.contrib.auth.views import LoginView, login_required
 from django.contrib.auth.decorators import user_passes_test, login_required
-from django.core import serializers
+from django.core import serializers as core_serializers
 from django.http import HttpResponse
 import time
 from rest_framework import viewsets
@@ -62,10 +64,10 @@ def error(request):
 def all_products(request):
     all_p = Product.objects.all()
     total = Product.objects.all().count()
-    format = request.GET.get("format", '')
+    flag = request.GET.get('format', '')
 
-    if format == "json":
-        products_serialised = serializers.serialize("json", all_p)
+    if flag == "json":
+        products_serialised = core_serializers.serialize("json", all_p)
         return HttpResponse(products_serialised, content_type="application/json")
     else:
         return render(request, 'all_products.html', {'products': all_p, 'count': total})
@@ -125,6 +127,9 @@ def basket(request):
 @login_required
 def add_to_basket(request, prodid):
     user = request.user
+    if user.is_anonymous:
+        token = request.META.get('HTTP_AUTHORIZATION').split(" ")[1]
+        user = Token.objects.get(key=token).user
     shopping_basket = ShoppingBasket.objects.filter(user_id=user).first()
 
     if not shopping_basket:
@@ -140,7 +145,11 @@ def add_to_basket(request, prodid):
         sbi.quantity = sbi.quantity + 1
         sbi.save()
 
-    return render(request, 'single_product.html', {'product': product, 'added': True})
+    flag = request.GET.get('format', '')
+    if flag == "json":
+        return HttpResponse({"status": "success"}, content_type="application/json")
+    else:
+        return render(request, 'single_product.html', {'product': product, 'added': True})
 
 
 @login_required
@@ -169,11 +178,13 @@ def order_form(request):
 
 
 class UserViewSet(viewsets.ModelViewSet):
+    authentication_classes, permission_classes = [], []
     queryset = CaUser.objects.all()
     serializer_class = UserSerializer
 
 
 class OrderViewSet(viewsets.ModelViewSet):
+    authentication_classes, permission_classes = [], []
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
 

@@ -4,6 +4,7 @@ from .forms import *
 from django.contrib.auth.decorators import user_passes_test
 from .views import *
 from rest_framework import routers
+from rest_framework.authtoken.views import obtain_auth_token
 from .models import CaUser
 
 router = routers.DefaultRouter()
@@ -31,6 +32,7 @@ urlpatterns = [
     path('cart/', views.basket, name="basket"),
     path('addbasket/<int:prodid>', views.add_to_basket, name="add_to_basket"),
     path('basket/', views.order_form),
-    path('api/', include(router.urls))
+    path('api/', include(router.urls)),
+    path('token/', obtain_auth_token, name="api-token-auth")
 ]
 

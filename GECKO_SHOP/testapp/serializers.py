@@ -23,4 +23,4 @@ class OrderSerializer(serializers.HyperlinkedModelSerializer):
 class ProductSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Product
-        fields = ['id', 'name', 'description', 'price']  # Note this is a double underscore !
+        fields = ['id', 'name', 'description', 'price', 'picture']  # Note this is a double underscore !

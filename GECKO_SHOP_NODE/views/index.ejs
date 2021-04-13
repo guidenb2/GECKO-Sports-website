@@ -80,6 +80,7 @@
           let buttoncontainer = document.createElement("td")
           let button = document.createElement("button")
           button.innerHTML = "Add to Cart 🛒"
+
           button.addEventListener('click', function(){
             addToBasket(element['id']);
           });
@@ -117,7 +118,7 @@
       function addToBasket(prodid)
       {
         if(window.token){
-          fetch("http://localhost:8000/addbasket/"+prodid+'?format=json',{
+          fetch(`http://localhost:8000/addbasket/${prodid}?json=True`,{
             method: 'GET',
             headers:{
               'Accept': 'application/json',

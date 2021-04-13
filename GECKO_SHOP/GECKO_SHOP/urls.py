@@ -17,13 +17,15 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
+from rest_framework.authtoken.views import obtain_auth_token
+
 
 urlpatterns = [
     path('', include('testapp.urls'), name="index"),
     path('admin/', admin.site.urls),
     path('about/', include('testapp.urls')),
     path('error/', include('testapp.urls')),
-    path('api-auth/', include('rest_framework.urls'))
-
-] + static(settings.STATIC_URL, document_root=settings.STATIC_URL) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path('api-auth/', include('rest_framework.urls')),
+    path('api-token-auth/', obtain_auth_token, name='api_token_auth'),
+]+ static(settings.STATIC_URL, document_root=settings.STATIC_URL) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

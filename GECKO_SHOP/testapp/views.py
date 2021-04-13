@@ -179,5 +179,6 @@ class OrderViewSet(viewsets.ModelViewSet):
 
 
 class ProductViewSet(viewsets.ModelViewSet):
+    authentication_classes, permission_classes = [], []
     queryset = Product.objects.all()
     serializer_class = ProductSerializer

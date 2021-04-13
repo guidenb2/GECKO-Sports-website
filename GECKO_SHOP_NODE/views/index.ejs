@@ -79,10 +79,15 @@
 
           let buttoncontainer = document.createElement("td")
           let button = document.createElement("button")
-          button.innerHTML = "Add to basket"
+          button.innerHTML = "Add to Cart 🛒"
           button.addEventListener('click', function(){
             addToBasket(element['id']);
           });
+          button.style.backgroundColor = "Red"
+          button.style.color = "white"
+          button.style.borderColor = "DarkRed"
+          button.style.borderRadius = "5px"
+          button.style.fontSize = "125%"
           buttoncontainer.appendChild(button)
           newRow.appendChild(buttoncontainer)
         });

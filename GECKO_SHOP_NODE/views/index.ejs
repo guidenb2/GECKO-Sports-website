@@ -1,7 +1,7 @@
 <html>
   <head>
     <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   </head>
 
   <body>
@@ -18,13 +18,27 @@
       </thead>
     </table>
 
-    <form id="login-form" method="POST" , action=".">
-      <label for="username">Username</label>
-      <input type="text" id="form-username" name="username" placeholder="Your username" />
-      <label for="password">Password</label>
-      <input type="password" id="form-password" name="password" placeholder="Your password" />
-      <input type="submit" value="Submit" />
-    </form>
+    <br>
+
+    <div class="card" style="width: 22rem; margin-left: 10rem;">
+      <div class="card-body">
+        <form id="login-form" method="POST" , action=".">
+          <label for="username"><strong>Username:</strong></label>
+          <input type="text" id="form-username" name="username" placeholder="Your username" />
+          
+          <br>
+
+          <label for="password"><strong>Password:</strong></label>
+          <input type="password" id="form-password" name="password" placeholder="Your password" />
+          
+          <br>
+          <button class="btn btn-success" style="margin-left: 6rem;" type="submit">LOGIN</button>
+        </form>
+      </div>
+    </div>
+
+
+
 
     <script>
       fetch("http://localhost:8000/api/products/?format=json") // make a request

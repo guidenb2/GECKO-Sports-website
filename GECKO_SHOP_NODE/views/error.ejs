@@ -1,3 +1,9 @@
-<h1><%= message %></h1>
-<h2><%= error.status %></h2>
-<pre><%= error.stack %></pre>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<div class="jumbotron" style="margin-top: 2rem;">
+  <h1 class="display-4"><strong>Houston we have a problem!! 🚀</strong></h1>
+  <p class="lead"><%= message %></p>
+  <p class="lead"><%= error.status %></p>
+  <hr class="my-4">
+  <pre><%= error.stack %></pre>
+</div>

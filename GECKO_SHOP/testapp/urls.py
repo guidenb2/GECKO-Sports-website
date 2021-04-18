@@ -11,6 +11,7 @@ router = routers.DefaultRouter()
 router.register(r'users', UserViewSet) # when we go to /api/users - load the users json
 router.register(r'orders', OrderViewSet)
 router.register(r'products', ProductViewSet)
+router.register(r'reviews', ReviewViewSet)
 
 urlpatterns = [
     path('', views.homepage, name='index'),

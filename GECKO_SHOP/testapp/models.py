@@ -55,3 +55,4 @@ class Reviews(models.Model):
     customer_name = models.CharField(max_length=40, default=True)
     role = models.CharField(max_length=40)
     review = models.CharField(max_length=500)
+

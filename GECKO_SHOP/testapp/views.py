@@ -193,3 +193,9 @@ class ProductViewSet(viewsets.ModelViewSet):
     authentication_classes, permission_classes = [], []
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+
+
+class ReviewViewSet(viewsets.ModelViewSet):
+    authentication_classes, permission_classes = [], []
+    queryset = Reviews.objects.all()
+    serializer_class = ReviewSerializer

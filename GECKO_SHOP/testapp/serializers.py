@@ -24,3 +24,10 @@ class ProductSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Product
         fields = ['id', 'name', 'description', 'price', 'picture']
+
+
+# Reviews
+class ReviewSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Reviews
+        fields = '__all__'

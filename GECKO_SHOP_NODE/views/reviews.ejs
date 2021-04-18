@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<head>
+  <<h1>Hello</h1>
+</<head>
+
+<body>
+  <table id="reviews_table">
+    <thead>
+    <tr>
+      <td>Customer Name</td>
+      <td>Role</td>
+      <td>Review</td>
+    </tr>
+  </table>
+
+<script>
+  fetch("http://localhost:8000/api/reviews/?format=json") // make a request
+  .then(response => response.json()) // with our response, get the json data returned
+  .then(data =>{
+    console.log(data)
+    data.forEach(element =>{
+    let table = document.getElementById("reviews_table")
+    let newRow = document.createElement("tr")
+    table.appendChild(newRow)
+
+    let name = document.createElement("td")
+    name.innerHTML = element['customer_name']
+    newRow.appendChild(name)
+  })
+});
+
+</script>

@@ -14,4 +14,11 @@ router.get('/reviews', function(req, res, next)
   res.render('reviews', {title: "GECKO SHOP"});
 });
 
+
+/* GET home page. */
+router.get('/products', function(req, res, next)
+{
+  res.send("hello love");
+});
+
 module.exports = router;

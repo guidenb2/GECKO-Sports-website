@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  </head>
+
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+
+    <table id="product-table" class="table table-bordered">
+      <thead>
+        <tr>
+          <td scope="col" style="width: 10%;"><strong>Picture</strong></td>
+          <td scope="col" style="width: 10%;"><strong>ID</strong></td>
+          <td scope="col" style="width: 15%;"><strong>Name</strong></td>
+          <td scope="col" style="width: 30%;"><strong>Description</strong></td>
+          <td scope="col" style="width: 20%"><strong>Price</strong></td>
+          <td scope="col" style="width: 15%;"><strong>Add to Basket</strong></td>
+        </tr>
+      </thead>
+    </table>
+
+    <br>
+
+    <div class="card" style="width: 22rem; margin-left: 10rem;">
+      <div class="card-body">
+        <form id="login-form", action="." method="POST">
+          <label for="username"><strong>Username:</strong></label>
+          <input type="text" id="username" name="username" placeholder="Your username" />
+
+          <br>
+
+          <label for="password"><strong>Password:</strong></label>
+          <input type="password" id="password" name="password" placeholder="Your password" />
+
+          <br>
+          <button class="btn btn-success" style="margin-left: 6rem;" type="submit">LOGIN</button>
+        </form>
+      </div>
+    </div>
+
+
+
+
+    <script>
+      fetch("http://localhost:8000/api/products/?format=json") // make a request
+      .then(response => response.json()) // with our response, get the json data returned
+      .then(data =>{
+        console.log(data)
+        data.forEach(element =>{
+          let table = document.getElementById("product-table") // Fetch the table above
+          let newRow = document.createElement("tr") // Add in a row <tr></tr>
+          table.appendChild(newRow) // Add the new row to table
+
+          let picturetd = document.createElement("td")
+          let picture = document.createElement("img")
+          picture.src = element['picture']
+          picture.style.width = '100%'
+          newRow.appendChild(picturetd)
+          picturetd.appendChild(picture)
+
+          let ID = document.createElement("td")
+          ID.innerHTML = element["id"]
+          newRow.appendChild(ID)
+
+          let name = document.createElement("td") // Create <td>Inner html</td>
+          name.innerHTML = element["name"]
+          newRow.appendChild(name)
+
+          let desc = document.createElement("td")
+          desc.innerHTML = element["description"]
+          newRow.appendChild(desc)
+
+          let price = document.createElement("td")
+          price.innerHTML = element["price"]
+          newRow.appendChild(price)
+
+          let buttoncontainer = document.createElement("td")
+          let button = document.createElement("button")
+          button.innerHTML = "Add to Cart 🛒"
+
+          button.addEventListener('click', function(){
+            addToBasket(element['id'])
+          })
+          button.style.backgroundColor = "Red"
+          button.style.color = "white"
+          button.style.borderColor = "DarkRed"
+          button.style.borderRadius = "5px"
+          button.style.fontSize = "125%"
+          buttoncontainer.appendChild(button)
+          newRow.appendChild(buttoncontainer)
+        });
+      }); // log the json data
+
+      let login = document.getElementById("login-form")
+      login.addEventListener("submit",(event) =>{
+        event.preventDefault();
+
+        let user = document.getElementById("username").value
+        let pass = document.getElementById("password").value
+
+        fetch("http://localhost:8000/token/",
+        {
+              method: 'POST',
+              headers:{
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+              body:JSON.stringify({username:user, password:pass})
+        }).then(response => response.json()).then(function(data){
+          console.log(data)
+          window.token = data['token']
+        })
+    }, true)
+
+      function addToBasket(prodid)
+      {
+        if(window.token){
+          fetch(`http://localhost:8000/addbasket/${prodid}?json=True`,{
+            method: 'GET',
+            headers:{
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+              'Authorization': 'Token '+window.token
+            }
+          }).then(response => response.json()).then(data=>console.log(data));
+        }
+        else
+        {
+          alert("Please log in to continue")
+        }
+      }
+    </script>
+  <br>
+
+  </body>
+</html>

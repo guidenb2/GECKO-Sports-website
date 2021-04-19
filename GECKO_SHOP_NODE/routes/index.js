@@ -18,7 +18,7 @@ router.get('/reviews', function(req, res, next)
 /* GET home page. */
 router.get('/products', function(req, res, next)
 {
-  res.send("hello love");
+  res.render('products', {title: "GECKO SPORT"});
 });
 
 module.exports = router;

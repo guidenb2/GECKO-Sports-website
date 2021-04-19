@@ -21,10 +21,17 @@ router.get('/products', function(req, res, next)
   res.render('products', {title: "Products"});
 });
 
+
 /* GET about page. */
 router.get('/about', function(req, res, next)
 {
   res.render('about', {title: "About"});
+});
+
+
+router.get('/login', function(req, res, next)
+{
+  res.render('userlogin', {title: "Login"});
 });
 
 module.exports = router;

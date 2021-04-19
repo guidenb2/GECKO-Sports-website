@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  </head>
+
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="/"><span style="color: forestgreen"><strong>GECKO 🦎</strong></span></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/"><strong>Home</strong><span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../about"><strong>About</strong></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/products"><strong>Products</strong></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="/reviews"><strong>Reviews</strong></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<body>
+    <div class="d-flex align-items-center" style="height: 700px; width:80%; margin: auto;">
+        
+        <div class="col-6">
+            <div class="container" style="width: 60%; padding-top: 5rem; padding-bottom: 5rem; padding-left: 2rem;">
+                <div class="card align-items-center" style="width: 22rem;">
+                    <div class="card-body">
+                    <form id="login-form", action="." method="POST">
+                        <label for="username"><strong>Username:</strong></label>
+                        <input type="text" id="username" name="username" placeholder="Your username" />
+                
+                        <br>
+                
+                        <label for="password"><strong>Password:</strong></label>
+                        <input type="password" id="password" name="password" placeholder="Your password" />
+                
+                        <br>
+                        <button class="btn btn-success" style="margin-left: 6rem;" type="submit">LOGIN</button>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col" style="padding-left: 5rem;"><img src="http://localhost:3000/images/GECKO.png"></div>
+    </div>
+</body>
+
+
+<script>
+  let login = document.getElementById("login-form")
+  login.addEventListener("submit",(event) =>{
+    event.preventDefault();
+
+    let user = document.getElementById("username").value
+    let pass = document.getElementById("password").value
+
+    fetch("http://localhost:8000/token/",
+    {
+          method: 'POST',
+          headers:{
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body:JSON.stringify({username:user, password:pass})
+    }).then(response => response.json()).then(function(data){
+      console.log(data)
+      window.token = data['token']
+    })
+}, true)
+</script>

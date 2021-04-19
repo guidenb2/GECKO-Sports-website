@@ -8,17 +8,23 @@ router.get('/', function(req, res, next)
 });
 
 
-/* GET home page. */
+/* GET reviews page. */
 router.get('/reviews', function(req, res, next)
 {
-  res.render('reviews', {title: "GECKO SHOP"});
+  res.render('reviews', {title: "Reviews"});
 });
 
 
-/* GET home page. */
+/* GET products page. */
 router.get('/products', function(req, res, next)
 {
-  res.render('products', {title: "GECKO SPORT"});
+  res.render('products', {title: "Products"});
+});
+
+/* GET about page. */
+router.get('/about', function(req, res, next)
+{
+  res.render('about', {title: "About"});
 });
 
 module.exports = router;

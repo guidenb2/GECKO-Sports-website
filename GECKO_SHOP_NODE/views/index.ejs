@@ -6,8 +6,7 @@
 <title><%= title %></title>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="/"><span style="color: forestgreen"><strong>GECKO 🦎</strong></span></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
-            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarText">
@@ -16,17 +15,16 @@
                 <a class="nav-link" href="/"><strong>Home</strong><span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="../about"><strong>About</strong></a>
+                <a class="nav-link" href=#AboutUs><strong>About</strong></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/products"><strong>Products</strong></a>
+                <a class="nav-link" href=#Products><strong>Products</strong></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/reviews"><strong>Reviews</strong></a>
+                <a class="nav-link" href=#Reviews><strong>Reviews</strong></a>
             </li>
         </ul>
-      
-        <a class="btn btn-danger" href="/login" role="button">Login</a>
+            <a class="btn btn-danger" href="/login" role="button">Login</a>
     </div>
 </nav>
 
@@ -83,16 +81,6 @@
     </div>
 
   </div>
-</div>
-  <a class="carousel-control-prev" href="#carouselControls" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselControls" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="false"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>
 
 
 <script>
@@ -191,3 +179,195 @@
         
       })
 </script>
+    <br>
+    <a id = "AboutUs"><h1>Who Are We?</h1></a>
+  <div class="card w-75" style="margin-top: 3rem; margin-left: 10rem">
+  <div class="card-header" style="color: forestgreen">
+      <h4><strong>About Us? 👥</strong></h4>
+  </div>
+  <div class="card-body">
+    <p class="card-text">GECKO Sports is a Dublin based start-up setup by 2 full-time students, Ben & Harish. Ben and I are currently in our pen-ultimate
+      years in <strong><i>DCU (Dublin City University)</i></strong> studying Computer Applications. GECKO Sports was not planned nor did we ever want to setup a company together.
+    It was something that spawned out our mutual connections and interests in Sport. Ben participates in professional cross country running with his club
+    Clonliffe Harriers AC while I play Senior Football with my local GAA club, Ballymun Kickhams. Although both of our clubs were completely different, we did
+    however share a common problem, the constant need for equipment and clothing. At the time, there were countless companies that were in a position
+    to suit our needs but they were just way too expensive. There was no company that provided <strong>affordable but also high quality</strong> material.
+    We saw this as a profitable and demanding market and said "why don't we give it a shot?". Voila!</p>
+  </div>
+</div>
+
+<div class="row">
+  <div>
+    <img src="https://img2.thejournal.ie/inline/4319981/original/?width=630&version=4319981" style="margin-left: 11.5rem; margin-top: 4rem;">
+  </div>
+  <div>
+      <img src="http://files.hoganstand.com/common/newgallery/10f3f5e9-fc6c-45ea-860a-f27cdd56c6b4.jpg" style="margin-left: 10rem; margin-top: 4rem; height: 420px">
+  </div>
+</div>
+
+
+
+<div class="card w-75" style="margin-top: 3rem; margin-left: 10rem">
+  <div class="card-header" style="color: mediumvioletred">
+      <h4><strong>Meaning behind GECKO? 🦎</strong></h4>
+  </div>
+  <div class="card-body">
+    <p class="card-text">We always get the question, <i>"What on earth does GECKO stand for or mean?"</i>. The reason is quite simple to be honest.
+    You can think of it being a little symbolic. Just like a GECKO sheds its skin to get a new skin we're essentially operating under the same
+    concept. We provide new material to those wanting evolve.</p>
+  </div>
+</div>
+<br>
+<a id="Reviews"></a>
+<h1>Reviews From Our Famous Irish Faces ☘</h1>
+  <div class="container">
+      <div class="row align-items-center" id="review-row">
+      </div>
+
+
+<script>
+  fetch("http://localhost:8000/api/reviews/?format=json") // make a request
+  .then(response => response.json()) // with our response, get the json data returned
+  .then(data =>{
+    console.log(data)
+    data.forEach(element =>{
+    let row = document.getElementById("review-row")
+
+    // <div class="col-lg-4 d-flex align-items-stretch">
+    let column = document.createElement("div")
+    column.className = "col-lg-4 d-flex align-items-stretch"
+    row.appendChild(column)
+
+    // <div class="card bg-dark border-light text-white flex-fill" style="width: 14rem; height: 28.9rem; margin-top: 20px; margin-bottom: 10px; margin-left: 10px">
+    let card = document.createElement("div")
+    card.className = "card bg-dark border-light text-white flex-fill"
+    card.style = "width: 14rem; height: 28.9rem; margin-top: 20px; margin-bottom: 10px; margin-left: 10px"
+    column.appendChild(card)
+
+    // <img src=element['customer_pic'] class="card-img-top" style="height: 20rem; object-fit: cover" alt=element['customer_name']>
+    let picture = document.createElement("img")
+    picture.src = element["customer_pic"]
+    picture.class = "card-img-top"
+    picture.alt = element['customer_name']
+    picture.style = "height: 20rem; object-fit: cover"
+    card.appendChild(picture)
+
+    // <div class="card-body">
+    let card_body = document.createElement("div")
+    card_body.className = "card-body"
+    card.appendChild(card_body)
+
+    // <p class="card-text" style="text-align: center"><strong>element['customer_name']</strong><br><i>element['role']</i></p>
+    let card_text1 = document.createElement("p")
+    card_text1.className = "card-text"
+    card_text1.style = "text-align: center"
+    card_body.appendChild(card_text1)
+
+    let bold_text = document.createElement("strong")
+    bold_text.innerHTML = element["customer_name"]
+    card_text1.appendChild(bold_text)
+
+    card_text1.innerHTML += ("<br>" + element['role'])
+
+
+    // <p class="card-text" style="text-align: center">element['review']</p>
+    let card_text3 = document.createElement("p")
+    card_text3.className = "card-text"
+    card_text3.style = "text-align: center"
+    card_text3.innerHTML = element['review']
+    card_body.appendChild(card_text3)
+  })
+});
+
+</script>
+    <br>
+</div>
+
+<a id = "Products"></a><h1>Products</h1></a>
+
+    <table id="product-table" class="table table-bordered">
+      <thead>
+        <tr>
+          <td scope="col" style="width: 10%;"><strong>Picture</strong></td>
+          <td scope="col" style="width: 10%;"><strong>ID</strong></td>
+          <td scope="col" style="width: 15%;"><strong>Name</strong></td>
+          <td scope="col" style="width: 30%;"><strong>Description</strong></td>
+          <td scope="col" style="width: 20%"><strong>Price</strong></td>
+          <td scope="col" style="width: 15%;"><strong>Add to Basket</strong></td>
+        </tr>
+      </thead>
+    </table>
+
+
+
+
+
+    <script>
+      fetch("http://localhost:8000/api/products/?format=json") // make a request
+      .then(response => response.json()) // with our response, get the json data returned
+      .then(data =>{
+        console.log(data)
+        data.forEach(element =>{
+          let table = document.getElementById("product-table") // Fetch the table above
+          let newRow = document.createElement("tr") // Add in a row <tr></tr>
+          table.appendChild(newRow) // Add the new row to table
+
+          let picturetd = document.createElement("td")
+          let picture = document.createElement("img")
+          picture.src = element['picture']
+          picture.style.width = '100%'
+          newRow.appendChild(picturetd)
+          picturetd.appendChild(picture)
+
+          let ID = document.createElement("td")
+          ID.innerHTML = element["id"]
+          newRow.appendChild(ID)
+
+          let name = document.createElement("td") // Create <td>Inner html</td>
+          name.innerHTML = element["name"]
+          newRow.appendChild(name)
+
+          let desc = document.createElement("td")
+          desc.innerHTML = element["description"]
+          newRow.appendChild(desc)
+
+          let price = document.createElement("td")
+          price.innerHTML = element["price"]
+          newRow.appendChild(price)
+
+          let buttoncontainer = document.createElement("td")
+          let button = document.createElement("button")
+          button.innerHTML = "Add to Cart 🛒"
+
+          button.addEventListener('click', function(){
+            addToBasket(element['id'])
+          })
+          button.style.backgroundColor = "Red"
+          button.style.color = "white"
+          button.style.borderColor = "DarkRed"
+          button.style.borderRadius = "5px"
+          button.style.fontSize = "125%"
+          buttoncontainer.appendChild(button)
+          newRow.appendChild(buttoncontainer)
+        });
+      }); // log the json data
+
+      function addToBasket(prodid)
+      {
+        if(window.token){
+          fetch(`http://localhost:8000/addbasket/${prodid}?json=True`,{
+            method: 'GET',
+            headers:{
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+              'Authorization': 'Token '+window.token
+            }
+          }).then(response => response.json()).then(data=>console.log(data));
+        }
+        else
+        {
+          alert("Please log in to continue")
+        }
+      }
+    </script>
+  <br>

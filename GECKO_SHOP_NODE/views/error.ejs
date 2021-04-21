@@ -1,9 +1,24 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
-<div class="jumbotron" style="margin-top: 2rem;">
-  <h1 class="display-4"><strong>Houston we have a problem!! 🚀</strong></h1>
-  <p class="lead"><%= message %></p>
-  <p class="lead"><%= error.status %></p>
-  <hr class="my-4">
-  <pre><%= error.stack %></pre>
+<title>Bad Request</title>
+<body style="background-color: whitesmoke">
+</body>
+
+<div class="container">
+    <div class="card" style="width: 18rem; margin-top: 23rem; margin-left: 25rem">
+        <div class="card-body">
+            <h5 class="card-title" style="text-align: center; color: midnightblue"><strong>OOPS!</strong></h5>
+            <p class="card-text" style="text-align: center">Houston we have a problem!! 🚀</p>
+            <a href="../" class="btn btn-danger" style="margin-bottom: 0.5rem; margin-left: 2.3rem">Return to Homepage</a>
+        </div>
+
+        <div class="card-footer">
+            <span style="color: deeppink"><i><strong>Error Status: </strong></i></span><strong><%= error.status %></strong>
+        </div>
+    </div>
+</div>
+
+
+<div class="container" style="width: 50%; margin-top: 3rem;">
+<pre><%= error.stack %></pre>
 </div>

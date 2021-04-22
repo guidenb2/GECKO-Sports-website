@@ -442,6 +442,7 @@
     }).then(response => response.json()).then(function(data){
       console.log(data)
       window.token = data['token']
+      alert("Hello " + user)
     })
 }, true)
 </script>
@@ -465,7 +466,7 @@
 
             <br>
 
-            <label for="subject">Subject:</label>
+            <label for="subject">Subject:</label><span style="color: red;">*</span>
             <input type="subject" class="form-control" id="message-subject" placeholder="Message Subject">
 
             <br>

@@ -28,7 +28,7 @@
             </li>
         </ul>
         <a class="btn btn-danger" href="#login" role="button">Login</a>
-        <a class="btn btn-primary" href="#contact-us" role="button" style="margin-left: 1rem;">Contact Us</a>
+        <a class="btn btn-warning" href="#contact-us" role="button" style="margin-left: 1rem;">Contact Us</a>
     </div>
 </nav>
 
@@ -442,7 +442,16 @@
     }).then(response => response.json()).then(function(data){
       console.log(data)
       window.token = data['token']
-      alert("Hello " + user)
+      
+      let user_nav = document.getElementById("navbarText")
+      let nav_text = document.createElement("a")
+      nav_text.className = "btn font-italic"
+      nav_text.style = "color: #0060E3;"
+      let nav_bold_text = document.createElement("strong")
+      nav_bold_text.innerHTML = ("Hello " + user)
+      nav_text.appendChild(nav_bold_text)
+
+      user_nav.appendChild(nav_text)
     })
 }, true)
 </script>

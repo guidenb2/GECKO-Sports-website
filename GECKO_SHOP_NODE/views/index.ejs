@@ -27,20 +27,20 @@
                 <a class="nav-link" href=#Products><strong>Products</strong></a>
             </li>
         </ul>
-        <a class="btn btn-danger" href="#login" role="button">Login</a>
-        <a class="btn btn-warning" href="#contact-us" role="button" style="margin-left: 1rem;">Contact Us</a>
+        <a class="btn btn-danger" href="#login" id="login_button" role="button">Login</a>
+        <a class="btn btn-warning" href="#contact-us" role="button" style="margin-left: 1rem; margin-right: 1rem;">Contact Us</a>
     </div>
 </nav>
 
 
 <table class="table table-dark">
-        <thead>
+      <thead>
         <tr>
           <th style="width: 30%; text-align: center">FREE DELIVERY ON ALL ORDERS OVER €50</th>
           <th style="text-align: center">FREE RETURN & EXCHANGE</th>
           <th style="width: 30%; text-align: center">SALE NOW ON</th>
         </tr>
-        </thead>
+      </thead>
 </table>
 
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="margin-top: -1rem;">
@@ -443,6 +443,17 @@
       console.log(data)
       window.token = data['token']
       
+      let login_button = document.getElementById("login_button")
+      login_button.remove()
+      
+      let logout_button = document.getElementById("navbarText")
+      let nav_text2 = document.createElement("a")
+      nav_text2.className = "btn btn-danger"
+      nav_text2.href = "/"
+      nav_text2.role = "button"
+      nav_text2.innerHTML = "Logout"
+      logout_button.appendChild(nav_text2)
+
       let user_nav = document.getElementById("navbarText")
       let nav_text = document.createElement("a")
       nav_text.className = "btn font-italic"
@@ -452,6 +463,9 @@
       nav_text.appendChild(nav_bold_text)
 
       user_nav.appendChild(nav_text)
+
+      let login_section = document.getElementById("login")
+      login_section.remove()
     })
 }, true)
 </script>

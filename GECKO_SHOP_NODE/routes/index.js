@@ -7,5 +7,7 @@ router.get('/', function(req, res, next)
   res.render('index', {title: "GECKO SHOP"});
 });
 
+router.post('/', (req, res, next)=>{
 
+});
 module.exports = router;

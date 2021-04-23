@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-from tokenize import Token
 
-from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import *
 from .forms import *
@@ -10,10 +8,14 @@ from django.contrib.auth import login, logout
 from django.contrib.auth.views import LoginView, login_required
 from django.contrib.auth.decorators import user_passes_test, login_required
 from django.core import serializers as core_serializers
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 import time
 from rest_framework import viewsets
 from .serializers import *
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import authentication_classes, permission_classes
+from rest_framework.authtoken.models import Token
 
 
 # Create your views here.
@@ -124,7 +126,8 @@ def basket(request):
         return render(request, 'empty_basket.html')
 
 
-@login_required
+@authentication_classes([SessionAuthentication, BasicAuthentication])
+@permission_classes([IsAuthenticated])
 def add_to_basket(request, prodid):
     user = request.user
     if user.is_anonymous:
@@ -147,7 +150,7 @@ def add_to_basket(request, prodid):
 
     flag = request.GET.get('format', '')
     if flag == "json":
-        return HttpResponse({"status": "success"}, content_type="application/json")
+        return JsonResponse({"status": "success"})
     else:
         return render(request, 'single_product.html', {'product': product, 'added': True})
 

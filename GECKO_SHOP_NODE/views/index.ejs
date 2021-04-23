@@ -7,6 +7,7 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js" integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf" crossorigin="anonymous"></script>
         <title><%= title %></title>
+        <link rel = "icon" href ="http://localhost:3000/images/title.png" type = "image/x-icon">
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -237,74 +238,9 @@
                 </div>
             </div>
 
-        <div class="col" style="padding-left: 5rem;"><img src="http://localhost:3000/images/GECKO.png" alt="Gecko Sports Logo"></div>
-    </div>
-
-
-<script>
-  let login = document.getElementById("login-form")
-  login.addEventListener("submit",(event) =>{
-    event.preventDefault();
-
-    let user = document.getElementById("username").value
-    let pass = document.getElementById("password").value
-
-    fetch("http://localhost:8000/token/",
-    {
-          method: 'POST',
-          headers:{
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-          },
-          body:JSON.stringify({username:user, password:pass})
-    }).then(response => response.json()).then(function(data){
-      console.log(data)
-      window.token = data['token']
-      
-      let login_button = document.getElementById("login_button")
-      login_button.remove()
-      
-      let logout_button = document.getElementById("navbarText")
-      let nav_text2 = document.createElement("a")
-      nav_text2.className = "btn btn-danger"
-      nav_text2.href = "/"
-      nav_text2.role = "button"
-      nav_text2.innerHTML = "Logout"
-      logout_button.appendChild(nav_text2)
-
-      let user_nav = document.getElementById("navbarText")
-      let nav_text = document.createElement("a")
-      nav_text.className = "btn font-italic"
-      nav_text.style = "color: #0060E3;"
-      let nav_bold_text = document.createElement("strong")
-      nav_bold_text.innerHTML = ("Hello " + user)
-      nav_text.appendChild(nav_bold_text)
-
-      user_nav.appendChild(nav_text)
-
-      let login_section = document.getElementById("login")
-      login_section.remove()
-    })
-}, true)
-</script>
-
-
-<div class="container mb-3" style="width: 30%; text-align: center;">
-  <h3>Get In Touch 📩</h3>
-</div>
-  <div class="container" id="contact-us">
-    <div class="row">
-      <div class="col" style="padding-left: 3rem;">
-        <form>
-          <div class="form-group">
-            <label for="name">Name:<span style="color: red;">*</span></label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Name">
-
-
             <div class="container">
                 <div class="row align-items-center" id="review-row">
                 </div>
-
 
             <script>
                 fetch("http://localhost:8000/api/reviews/?format=json") // make a request

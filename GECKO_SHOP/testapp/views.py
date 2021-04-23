@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from tokenize import Token
 
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import *
@@ -13,6 +12,10 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 import time
 from rest_framework import viewsets
 from .serializers import *
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.decorators import authentication_classes, permission_classes
+from rest_framework.authtoken.models import Token
 
 
 # Create your views here.
@@ -123,7 +126,8 @@ def basket(request):
         return render(request, 'empty_basket.html')
 
 
-@login_required
+@authentication_classes([SessionAuthentication, BasicAuthentication])
+@permission_classes([IsAuthenticated])
 def add_to_basket(request, prodid):
     user = request.user
     if user.is_anonymous:

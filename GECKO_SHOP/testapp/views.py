@@ -10,6 +10,7 @@ from django.contrib.auth.decorators import user_passes_test, login_required
 from django.core import serializers as core_serializers
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 import time
+import json
 from rest_framework import viewsets
 from .serializers import *
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
@@ -115,15 +116,29 @@ def all_orders(request):
     return render(request, 'orders.html', {'orders': all_ords, 'count': total})
 
 
-@login_required
+@authentication_classes([SessionAuthentication, BasicAuthentication])
+@permission_classes([IsAuthenticated])
 def basket(request):
     user = request.user
+    if user.is_anonymous:
+        token = request.META.get('HTTP_AUTHORIZATION').split(" ")[1]
+        user = Token.objects.get(key=token).user
     shopping_basket = ShoppingBasket.objects.filter(user_id=user).first()
-    if shopping_basket:
-        sbi = ShoppingBasketItems.objects.filter(basket_id=shopping_basket.id)
-        return render(request, 'basket.html', {'basket': sbi})
+    if not shopping_basket:
+        shopping_basket = ShoppingBasket(user_id=user).save()
+    sbi = ShoppingBasketItems.objects.filter(basket_id=shopping_basket.id)
+    flag = request.GET.get('format', '')
+    if flag == "json":
+        basket_array = []
+        for basket_item in sbi:
+            tmp = {}
+            tmp['product'] = basket_item.product.name
+            tmp['price'] = float(basket_item.product.price)
+            tmp['quantity'] = int(basket_item.quantity)
+            basket_array.append(tmp)
+        return HttpResponse(json.dumps({'items': basket_array}), content_type="application/json")
     else:
-        return render(request, 'empty_basket.html')
+        return render(request, 'basket.html', {'basket': sbi})
 
 
 @authentication_classes([SessionAuthentication, BasicAuthentication])

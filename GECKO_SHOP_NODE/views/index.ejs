@@ -317,6 +317,17 @@
                     </tr>
                 </thead>
             </table>
+            <div id="show-shopping-basket">
+                <button id="show-basket">Show Basket</button>
+                <table id="shopping-basket">
+                    <tr>
+                        <td>Name</td>
+                        <td>Price</td>
+                        <td>Quantity</td>
+                        <td>Total</td>
+                    </tr>
+                </table>
+            </div>
 
             <br>
 
@@ -464,6 +475,46 @@
                         alert("Please log in to continue")
                     }
                 }
+
+                function showBasket(){
+                    if(window.token){
+                        fetch("http://localhost:8000/cart?format=json",{
+                            method: 'GET',
+                            headers:{
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json',
+                                'Authorization': 'Token '+window.token
+                            }
+                        }).then(response => response.json()).then(data=>{
+                            data['items'].forEach(element => {
+                                let table = document.getElementById("shopping-basket")
+                                let newRow = document.createElement("tr")
+                                table.appendChild(newRow)
+                                let name = document.createElement("td")
+                                name.innerHTML = element['product']
+                                newRow.appendChild(name)
+                                let price = document.createElement("td")
+                                price.innerHTML = element['price']
+                                newRow.append(price)
+                                let quantity = document.createElement("td")
+                                quantity.innerHTML = element['quantity']
+                                newRow.appendChild(quantity)
+                                let total = document.createElement("td")
+                                total.innerHTML = element['quantity']*element['price']
+                                newRow.appendChild(total)
+                            })
+                        })
+                    }
+                    else{
+                        alert("Please log in to continue")
+                    }
+                }
+
+                let showbb = document.getElementById("show-basket")
+                showbb.addEventListener("click", (event)=>{
+                    event.preventDefault()
+                    showBasket()
+                })
             </script>
 
             <div class="container mb-3" style="width: 30%; text-align: center;">

@@ -77,7 +77,7 @@
         </div>
 
         <div class="container" style="width: 25%; margin-left: auto; margin-right: auto; margin-top: 2rem; margin-bottom: 1rem;">
-            <h3 style="text-align: center;">Best Sellers <img src="http://localhost:3000/images/bestsellers.svg" style="width: 8%; margin-bottom: 0.5rem;"></h3>
+            <h3 style="text-align: center;">Best Sellers <img src="http://localhost:3000/images/bestsellers.svg" style="width: 8%; margin-bottom: 0.5rem;" alt="shopping bag icon"></h3>
         </div>
 
         <div id="carouselControls" class="carousel slide" data-ride="carousel"  style="margin-left: auto; margin-right: auto; width: 55%; padding-top: 1rem;">
@@ -176,13 +176,13 @@
 
             <div class="container" id="AboutUs" style="padding-top: 10rem"></div>
             <div class="container" style="width: 30%; text-align: center">
-                <h3>Who Are We? <img src="http://localhost:3000/images/aboutUs.svg" style="width: 15%; margin-bottom: 0.5rem;"></h3>
+                <h3>Who Are We? <img src="http://localhost:3000/images/aboutUs.svg" style="width: 15%; margin-bottom: 0.5rem;" alt="info icon 1"></h3>
             </div>
 
             <div class="container" style="width: 100%;">
                 <div class="card w-80" style="margin-top: 2rem;">
                     <div class="card-header" style="color: forestgreen">
-                        <h4><strong>About Us? </strong><img src="http://localhost:3000/images/aboutUs2.svg" style="width: 3%; margin-bottom: 0.2rem;"></h4>
+                        <h4><strong>About Us? </strong><img src="http://localhost:3000/images/aboutUs2.svg" style="width: 3%; margin-bottom: 0.2rem;" alt="info icon 2"></h4>
                     </div>
                     <div class="card-body">
                         <p class="card-text">GECKO Sports is a Dublin based start-up setup by 2 full-time students, Ben & Harish. Ben and I are currently in our pen-ultimate
@@ -217,7 +217,7 @@
 
             <div class="container" id="Reviews" style="padding-top: 10rem"></div>
             <div class="container" style="width: 60%; text-align: center; margin-bottom: 2rem;">
-                <h3>Reviews From Our Famous Irish Faces ☘<img src="http://localhost:3000/images/reviews.svg" style="width: 7%; margin-bottom: 1.2rem;"></h3>
+                <h3>Reviews From Our Famous Irish Faces ☘<img src="http://localhost:3000/images/reviews.svg" style="width: 7%; margin-bottom: 1.2rem;" alt="reviews icon"></h3>
             </div>
 
             <div class="container" style="width: 40%; margin-bottom: 1rem;">
@@ -302,7 +302,7 @@
             <div class="container" style="padding-top: 10rem"></div>
             <div class="container" id="Products" style="width: 30%; text-align: center; margin-bottom: 2rem;">
                 <br><br>
-                <h3>Products <img src="http://localhost:3000/images/cart.svg" style="width: 14%; margin-bottom: 0.5rem;"></h3>
+                <h3>Products <img src="http://localhost:3000/images/cart.svg" style="width: 14%; margin-bottom: 0.5rem;" alt="cart icon"></h3>
             </div>
 
 
@@ -328,7 +328,8 @@
                     </tr>
                 </table>
             </div>
-
+            
+            <div class="container" id="empty-container-below-products"></div>
             <br>
 
             <div class="d-flex align-items-center" id="login" style="height: 700px; width:100%; margin: auto;">
@@ -336,7 +337,7 @@
                 <div class="col-6">
                     <div class="container" style="width: 100%; padding-top: 5rem; padding-bottom: 5rem; padding-left: 2rem;">
                         <div class="card" style="width: 22rem;">
-                            <h5 class="card-header" style="text-align: center">Login  <img src="http://localhost:3000/images/login.svg" style="width: 8%; margin-bottom: 0.2rem;"></h5>
+                            <h5 class="card-header" style="text-align: center">Login  <img src="http://localhost:3000/images/login.svg" style="width: 8%; margin-bottom: 0.2rem;" alt="login icon"></h5>
                             <div class="card-body">
                                 <form id="login-form" action="." method="POST">
                                     <label for="username"><strong>Username:</strong></label>
@@ -448,10 +449,8 @@
                     let login_section = document.getElementById("login")
                     login_section.remove()
 
-                    let empty_container = document.createElement("div")
-                    empty_container.className = "container"
-                    empty_container.style = "padding-top: 10rem"
-                    login_section.appendChild(empty_container)
+                    let empty_container = document.getElementById("empty-container-below-products")
+                    empty_container.style = "height: 10rem"
                 })
                 }, true)
 
@@ -518,7 +517,7 @@
             </script>
 
             <div class="container mb-3" style="width: 30%; text-align: center;">
-                <h3>Get In Touch <img src="http://localhost:3000/images/contactUs.svg" style="width: 14%; margin-bottom: 0.5rem;"></h3>
+                <h3>Get In Touch <img src="http://localhost:3000/images/contactUs.svg" style="width: 14%; margin-bottom: 0.5rem;" alt="contact-us icon"></h3>
             </div>
             <div class="container" id="contact-us">
                 <div class="row">
@@ -548,7 +547,7 @@
 
                     <div class="col" style="padding-left: 4rem; padding-top: 3rem;">
                         <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d755.691912751479!2d-6.2684913551579875!3d53.360961155087054!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48670e7f2e79db15%3A0xd07ea09ff953fd6b!2sMountjoy%20Prison!5e1!3m2!1sen!2sie!4v1618955562898!5m2!1sen!2sie" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy">
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d755.691912751479!2d-6.2684913551579875!3d53.360961155087054!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48670e7f2e79db15%3A0xd07ea09ff953fd6b!2sMountjoy%20Prison!5e1!3m2!1sen!2sie!4v1618955562898!5m2!1sen!2sie" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" alt="map">
                         </iframe>
                     </div>
                 </div>

@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
 from django.shortcuts import render, redirect, get_object_or_404
+from django.views.decorators.csrf import csrf_exempt
+
 from .models import *
 from .forms import *
 from django.views.generic import CreateView
@@ -170,26 +172,40 @@ def add_to_basket(request, prodid):
         return render(request, 'single_product.html', {'product': product, 'added': True})
 
 
-@login_required
+@authentication_classes([SessionAuthentication, BasicAuthentication])
+@permission_classes([IsAuthenticated])
+@csrf_exempt
 def order_form(request):
     user = request.user
+    if user.is_anonymous:
+        token = request.META.get('HTTP_AUTHORIZATION').split(" ")[1]
+        user = Token.objects.get(key=token).user
     shopping_basket = ShoppingBasket.objects.filter(user_id=user).first()
     if not shopping_basket:
         return redirect(request, '/')
     sbi = ShoppingBasketItems.objects.filter(basket_id=shopping_basket.id)
     if request.method == 'POST':
-        form = OrderForm\
-            (request.POST)
+        if not request.POST:
+            body_unicode = request.body.decode('utf-8')
+            body = json.loads(body_unicode)
+            form = OrderForm(body)
+        else:
+            form = OrderForm(request.POST)
+        print(form.errors)
         if form.is_valid():
             order = form.save(commit=False)
-            order.user_id = request.user
+            order.user_id = user
             order.save()
             order_items = []
             for basketitem in sbi:
                 order_item = OrderItems(order_id=order, product_id=basketitem.product, quantity=basketitem.quantity)
                 order_items.append(order_item)
             shopping_basket.delete()
-            return render(request, 'ordercomplete.html', {'order': order, 'items': order_items})
+            flag = request.GET.get('format', '')
+            if flag == "json":
+                return JsonResponse({"status": "success"})
+            else:
+                return render(request, 'ordercomplete.html', {'order': order, 'items': order_items})
     else:
         form = OrderForm()
         return render(request, 'orderform.html', {'form': form, 'basket': shopping_basket, 'items': sbi})

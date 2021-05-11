@@ -64,6 +64,8 @@ fetch("http://localhost:8000/token/",
 console.log(data)
 window.token = data['token']
 
+window.location.hash = "#carouselExampleIndicators"
+
 let login_button = document.getElementById("login_button")
 login_button.remove()
 
@@ -74,6 +76,9 @@ nav_text2.href = "/"
 nav_text2.role = "button"
 nav_text2.innerHTML = "Logout"
 logout_button.appendChild(nav_text2)
+
+let admin_button = document.getElementById("admin-button")
+admin_button.remove()
 
 let user_nav = document.getElementById("navbarText")
 let nav_text = document.createElement("a")

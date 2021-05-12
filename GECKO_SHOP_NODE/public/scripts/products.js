@@ -120,6 +120,49 @@ else
 }
 
 function showBasket(){
+
+// <div id="show-shopping-basket">
+let products_table_div = document.getElementById("show-shopping-basket")
+let products_table = document.getElementById("shopping-basket")
+
+if(products_table == null)
+{
+// <table id="shopping-basket" class ="table table-striped table-bordered">
+let products_table = document.createElement("table")
+products_table.id = "shopping-basket"
+products_table.className = "table table-striped table-bordered"
+
+// <tr></tr>
+let table_row = document.createElement("tr")
+products_table.appendChild(table_row)
+
+// <td>Name</td>
+let table_data1 = document.createElement("td")
+table_data1.innerHTML = "Name"
+table_row.appendChild(table_data1)
+
+// <td>Price</td>
+let table_data2 = document.createElement("td")
+table_data2.innerHTML = "Price"
+table_row.appendChild(table_data2)
+
+// <td>Quantity</td>
+let table_data3 = document.createElement("td")
+table_data3.innerHTML = "Quantity"
+table_row.appendChild(table_data3)
+
+// <td>Total</td>
+let table_data4 = document.createElement("td")
+table_data4.innerHTML = "Total"
+table_row.appendChild(table_data4)
+
+products_table_div.appendChild(products_table)
+}
+else{
+  products_table.remove()
+}
+
+
 if(window.token){
     fetch("http://localhost:8000/cart?format=json",{
         method: 'GET',
@@ -132,16 +175,21 @@ if(window.token){
         data['items'].forEach(element => {
             let table = document.getElementById("shopping-basket")
             let newRow = document.createElement("tr")
+            newRow.id = "current-basket"
             table.appendChild(newRow)
+
             let name = document.createElement("td")
             name.innerHTML = element['product']
             newRow.appendChild(name)
+
             let price = document.createElement("td")
             price.innerHTML = element['price']
             newRow.append(price)
+
             let quantity = document.createElement("td")
             quantity.innerHTML = element['quantity']
             newRow.appendChild(quantity)
+
             let total = document.createElement("td")
             total.innerHTML = element['quantity']*element['price']
             newRow.appendChild(total)

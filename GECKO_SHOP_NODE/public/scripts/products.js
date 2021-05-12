@@ -124,6 +124,7 @@ function showBasket(){
 // <div id="show-shopping-basket">
 let products_table_div = document.getElementById("shopping-cart")
 let products_table = document.getElementById("shopping-basket")
+let checkout_btn = document.getElementById("checkout-button")
 
 if(products_table == null)
 {
@@ -156,21 +157,27 @@ let table_data4 = document.createElement("td")
 table_data4.innerHTML = "Total"
 table_row.appendChild(table_data4)
 
-
-// <button id="checkout-button" type="submit" class="btn btn-success">Checkout</button>
-let checkout_button = document.createElement("button")
-checkout_button.id = "checkout-button"
-checkout_button.type = "submit"
-checkout_button.className = "btn btn-success"
-checkout_button.innerHTML = "Checkout"
-
 products_table_div.appendChild(products_table)
-products_table_div.appendChild(checkout_button)
 }
 else{
   products_table.remove()
 }
 
+
+if(checkout_btn == null)
+{
+  // <button id="checkout-button" type="submit" class="btn btn-success">Checkout</button>
+  let checkout_button = document.createElement("button")
+  checkout_button.id = "checkout-button"
+  checkout_button.type = "submit"
+  checkout_button.className = "btn btn-success"
+  checkout_button.innerHTML = "Checkout"
+
+  products_table_div.appendChild(checkout_button)
+}
+else {
+checkout_btn.remove()
+}
 
 if(window.token){
     fetch("http://localhost:8000/cart?format=json",{

@@ -122,7 +122,7 @@ else
 function showBasket(){
 
 // <div id="show-shopping-basket">
-let products_table_div = document.getElementById("show-shopping-basket")
+let products_table_div = document.getElementById("shopping-cart")
 let products_table = document.getElementById("shopping-basket")
 
 if(products_table == null)
@@ -156,6 +156,8 @@ let table_data4 = document.createElement("td")
 table_data4.innerHTML = "Total"
 table_row.appendChild(table_data4)
 
+
+// <button id="checkout-button" type="submit" class="btn btn-success">Checkout</button>
 products_table_div.appendChild(products_table)
 }
 else{
@@ -201,7 +203,7 @@ else{
 }
 }
 
-let showbb = document.getElementById("show-basket")
+let showbb = document.getElementById("cart")
 showbb.addEventListener("click", (event)=>{
 event.preventDefault()
 showBasket()

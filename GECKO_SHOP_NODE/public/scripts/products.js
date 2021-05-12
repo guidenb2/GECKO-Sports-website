@@ -158,7 +158,14 @@ table_row.appendChild(table_data4)
 
 
 // <button id="checkout-button" type="submit" class="btn btn-success">Checkout</button>
+let checkout_button = document.createElement("button")
+checkout_button.id = "checkout-button"
+checkout_button.type = "submit"
+checkout_button.className = "btn btn-success"
+checkout_button.innerHTML = "Checkout"
+
 products_table_div.appendChild(products_table)
+products_table_div.appendChild(checkout_button)
 }
 else{
   products_table.remove()

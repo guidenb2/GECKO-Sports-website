@@ -124,7 +124,6 @@ function showBasket(){
 // <div id="show-shopping-basket">
 let products_table_div = document.getElementById("shopping-cart")
 let products_table = document.getElementById("shopping-basket")
-let checkout_btn = document.getElementById("checkout-button")
 
 if(products_table == null)
 {
@@ -163,21 +162,6 @@ else{
   products_table.remove()
 }
 
-
-if(checkout_btn == null)
-{
-  // <button id="checkout-button" type="submit" class="btn btn-success">Checkout</button>
-  let checkout_button = document.createElement("button")
-  checkout_button.id = "checkout-button"
-  checkout_button.type = "submit"
-  checkout_button.className = "btn btn-success"
-  checkout_button.innerHTML = "Checkout"
-
-  products_table_div.appendChild(checkout_button)
-}
-else {
-checkout_btn.remove()
-}
 
 if(window.token){
     fetch("http://localhost:8000/cart?format=json",{
@@ -221,24 +205,108 @@ let showbb = document.getElementById("cart")
 showbb.addEventListener("click", (event)=>{
 event.preventDefault()
 showBasket()
+checkout()
+checkoutClick()
 })
 
-let checkoutbutton = document.getElementById("checkout-button")
-checkoutbutton.addEventListener("click", (event)=>{
-event.preventDefault()
-let sp_addr = document.getElementById("shippping_addr").value
-fetch("http://localhost:8000/basket/?format=json", {
-    method: 'POST',
-    headers:{
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': 'Token '+window.token
-    },
-    body:JSON.stringify( {shipping_addr:sp_addr})
-}).then(function(response){
-    console.log(response)
-    return response.json()
-}).then(function(data){
-    console.log(data)
+
+function checkout()
+{
+  let checkout_btn = document.getElementById("checkout-button")
+  let products_table_div = document.getElementById("shopping-cart")
+
+  if(checkout_btn == null)
+  {
+    // <button id="checkout-button" type="submit" class="btn btn-success">Checkout</button>
+    let checkout_button = document.createElement("button")
+    checkout_button.id = "checkout-button"
+    checkout_button.type = "submit"
+    checkout_button.className = "btn btn-success"
+    checkout_button.innerHTML = "Checkout"
+
+    products_table_div.appendChild(checkout_button)
+  }
+  else {
+  checkout_btn.remove()
+  }
+}
+
+function checkoutClick() {
+  let checkoutbutton = document.getElementById("checkout-button")
+  let products_table_div = document.getElementById("shopping-cart")
+
+
+  checkoutbutton.addEventListener("click", (event)=>{
+  event.preventDefault()
+
+  let checkform = document.getElementById("checkout-form")
+
+  if(checkform == null)
+  {
+
+    // <form id="checkout-form" method="POST", action=".">
+    let form = document.createElement("form")
+    form.id = "checkout-form"
+    form.method = "POST"
+    form.action = "."
+    products_table_div.appendChild(form)
+
+    let br1 = document.createElement("br")
+    form.appendChild(br1)
+
+    // ================ CUSTOMER NAME ==========================
+    // <label>Full Name:</label>
+    let cust_name = document.createElement("label")
+    cust_name.innerHTML = "Full Name: "
+    form.appendChild(cust_name)
+
+    // <input type="text" placeholder="Full Name" id="customer_name">
+    let cust_form_in = document.createElement("input")
+    cust_form_in.type = "text"
+    cust_form_in.placeholder = "Full Name"
+    cust_form_in.id = "customer_name"
+    form.appendChild(cust_form_in)
+    // =========================================================
+
+    let br2 = document.createElement("br")
+    form.appendChild(br2)
+
+    // ================ SHIPPING ADDRESS ==========================
+    // <label for="shipping_addr">Shipping Address:</label>
+    let form_label = document.createElement("label")
+    form_label.for = "shipping_addr"
+    form_label.innerHTML = "Shipping Address: "
+    form.appendChild(form_label)
+
+    // <input type="text" name="shippping_addr" placeholder="Shipping address" id="shippping_addr">
+    let form_input = document.createElement("input")
+    form_input.type = "text"
+    form_input.name = "shipping_addr"
+    form_input.placeholder = "Shipping address"
+    form_label.id = "shippping_addr"
+    form.appendChild(form_input)
+    // =========================================================
+
+    let br3 = document.createElement("br")
+    form.appendChild(br3)
+
+    // ================ PHONE NUMBERS ==========================
+    // <label>Phone Number:</label>
+    let cust_ph = document.createElement("label")
+    cust_ph.innerHTML = "Phone Number: "
+    form.appendChild(cust_ph)
+
+    // <input type="text" placeholder="Phone Number" id="customer_phone">
+    let cust_form_in2 = document.createElement("input")
+    cust_form_in2.type = "text"
+    cust_form_in2.placeholder = "Phone Number"
+    cust_form_in2.id = "customer_phone"
+    form.appendChild(cust_form_in2)
+    // =========================================================
+}
+else {
+  console.log("success")
+
+}
 })
-}, true)
+}

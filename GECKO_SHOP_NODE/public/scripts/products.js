@@ -305,8 +305,30 @@ function checkoutClick() {
     // =========================================================
 }
 else {
-  console.log("success")
+  let result = confirm("Do you wish to complete you order?")
 
+  if (result != null)
+  {
+    let sp_addr = document.getElementById("shippping_addr").value
+
+    fetch("http://localhost:8000/basket/?format=json",
+    {
+        method: 'POST',
+        headers:
+        {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Token '+window.token
+        },
+        body:JSON.stringify( {shipping_addr:sp_addr})
+    }).then(function(response){
+      console.log(response)
+      return response.json()
+    }).then(function(data){
+      console.log(data)
+    })
+  }
 }
+
 })
 }

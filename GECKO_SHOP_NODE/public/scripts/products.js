@@ -327,6 +327,8 @@ else {
     }).then(function(data){
       console.log(data)
     })
+
+    alert("Thank you for your order!! Your order will be finalised soon!!")
   }
 }
 

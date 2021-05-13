@@ -64,7 +64,7 @@ fetch("http://localhost:8000/token/",
 console.log(data)
 window.token = data['token']
 
-window.location.hash = "#carouselExampleIndicators"
+window.location.hash = "#carousel"
 
 let login_button = document.getElementById("login_button")
 login_button.remove()
@@ -251,25 +251,6 @@ function checkoutClick() {
     form.action = "."
     products_table_div.appendChild(form)
 
-    let br1 = document.createElement("br")
-    form.appendChild(br1)
-
-    // ================ CUSTOMER NAME ==========================
-    // <label>Full Name:</label>
-    let cust_name = document.createElement("label")
-    cust_name.innerHTML = "Full Name: "
-    form.appendChild(cust_name)
-
-    // <input type="text" placeholder="Full Name" id="customer_name">
-    let cust_form_in = document.createElement("input")
-    cust_form_in.type = "text"
-    cust_form_in.placeholder = "Full Name"
-    cust_form_in.id = "customer_name"
-    form.appendChild(cust_form_in)
-    // =========================================================
-
-    let br2 = document.createElement("br")
-    form.appendChild(br2)
 
     // ================ SHIPPING ADDRESS ==========================
     // <label for="shipping_addr">Shipping Address:</label>
@@ -281,36 +262,21 @@ function checkoutClick() {
     // <input type="text" name="shippping_addr" placeholder="Shipping address" id="shippping_addr">
     let form_input = document.createElement("input")
     form_input.type = "text"
-    form_input.name = "shipping_addr"
+    form_input.name = "shippping_addr"
     form_input.placeholder = "Shipping address"
-    form_label.id = "shippping_addr"
+    form_input.id = "shippping_addr_input"
     form.appendChild(form_input)
-    // =========================================================
-
-    let br3 = document.createElement("br")
-    form.appendChild(br3)
-
-    // ================ PHONE NUMBERS ==========================
-    // <label>Phone Number:</label>
-    let cust_ph = document.createElement("label")
-    cust_ph.innerHTML = "Phone Number: "
-    form.appendChild(cust_ph)
-
-    // <input type="text" placeholder="Phone Number" id="customer_phone">
-    let cust_form_in2 = document.createElement("input")
-    cust_form_in2.type = "text"
-    cust_form_in2.placeholder = "Phone Number"
-    cust_form_in2.id = "customer_phone"
-    form.appendChild(cust_form_in2)
     // =========================================================
 }
 else {
   let result = confirm("Do you wish to complete you order?")
+  let sp_addr = document.getElementById("shippping_addr_input")
 
   if (result != null)
   {
-    let sp_addr = document.getElementById("shippping_addr").value
+    let sp_addr = document.getElementById("shippping_addr_input").value
 
+    console.log(sp_addr)
     fetch("http://localhost:8000/basket/?format=json",
     {
         method: 'POST',

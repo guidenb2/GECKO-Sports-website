@@ -116,7 +116,7 @@ admin_button.addEventListener("click", function()
         let orders_table = document.getElementById("orders")
           let orders_title = document.createElement("h3")
           orders_title.style = "text-align: center"
-          orders_title.innerHTML = "Orders <img src=\"http://localhost:3000/images/orders.svg\" style=\"width: 8%; margin-bottom: 0.5rem;\" alt=\"shopping bag icon\">"
+          orders_title.innerHTML = "Orders <img src=\"http://localhost:3000/images/orders.svg\" style=\"width: 8%; margin-bottom: 0.5rem;\" alt=\"package icon\">"
           orders_table_div.appendChild(orders_title)
 
         if(orders_table == null)

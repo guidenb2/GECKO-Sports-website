@@ -130,20 +130,25 @@ admin_button.addEventListener("click", function()
         let table_row = document.createElement("tr")
         orders_table.appendChild(table_row)
 
-        // <td>Name</td>
+        // <td>ID</td>
         let table_data1 = document.createElement("td")
-        table_data1.innerHTML = "<strong>User</strong>"
+        table_data1.innerHTML = "<strong>Order ID</strong>"
         table_row.appendChild(table_data1)
 
-        // <td>Price</td>
+        // <td>Name</td>
         let table_data2 = document.createElement("td")
-        table_data2.innerHTML = "<strong>Shipping Address</strong>"
+        table_data2.innerHTML = "<strong>User</strong>"
         table_row.appendChild(table_data2)
 
-        // <td>Quantity</td>
+        // <td>Price</td>
         let table_data3 = document.createElement("td")
-        table_data3.innerHTML = "<strong>Date Ordered</strong>"
+        table_data3.innerHTML = "<strong>Shipping Address</strong>"
         table_row.appendChild(table_data3)
+
+        // <td>Quantity</td>
+        let table_data4 = document.createElement("td")
+        table_data4.innerHTML = "<strong>Date Ordered</strong>"
+        table_row.appendChild(table_data4)
 
         orders_table_div.appendChild(orders_table)
         }
@@ -155,6 +160,10 @@ admin_button.addEventListener("click", function()
                 let table = document.getElementById("orders") // Fetch the table above
                 let newRow = document.createElement("tr") // Add in a row <tr></tr>
                 table.appendChild(newRow) // Add the new row to table
+
+                let id = document.createElement("td") // Create <td>Inner html</td>
+                id.innerHTML = element["id"]
+                newRow.appendChild(id)
 
                 let user = document.createElement("td")
                 fetch(element["user_id"]).then(response => response.json()).then(data => user.innerHTML = data["username"])

@@ -16,7 +16,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 class OrderSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Order
-        fields = '__all__'  # Note this is a double underscore !
+        fields = ['url', 'date_created', 'shipping_addr', 'user_id', 'id']  # Note this is a double underscore !
 
 
 # Products

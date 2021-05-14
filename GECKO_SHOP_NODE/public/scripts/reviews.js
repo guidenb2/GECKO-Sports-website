@@ -1,7 +1,6 @@
 fetch("http://localhost:8000/api/reviews/?format=json") // make a request
 .then(response => response.json()) // with our response, get the json data returned
 .then(data =>{
-    console.log(data)
     data.forEach(element =>{
         let row = document.getElementById("review-row")
 

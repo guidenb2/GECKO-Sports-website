@@ -1,7 +1,6 @@
 fetch("http://localhost:8000/api/products/?format=json") // make a request
 .then(response => response.json()) // with our response, get the json data returned
 .then(data =>{
-    console.log(data)
     data.forEach(element =>{
         let table = document.getElementById("product-table") // Fetch the table above
         let newRow = document.createElement("tr") // Add in a row <tr></tr>
@@ -52,6 +51,7 @@ event.preventDefault();
 let user = document.getElementById("username").value
 let pass = document.getElementById("password").value
 
+
 fetch("http://localhost:8000/token/",
 {
   method: 'POST',
@@ -61,7 +61,6 @@ fetch("http://localhost:8000/token/",
   },
   body:JSON.stringify({username:user, password:pass})
 }).then(response => response.json()).then(function(data){
-console.log(data)
 window.token = data['token']
 
 window.location.hash = "#carousel"
@@ -118,6 +117,7 @@ else
     alert("Please log in to continue")
 }
 }
+
 
 function showBasket(){
 

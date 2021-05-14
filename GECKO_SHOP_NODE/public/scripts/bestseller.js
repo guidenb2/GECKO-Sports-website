@@ -1,7 +1,6 @@
 fetch("http://localhost:8000/api/products/?format=json") // make a request
 .then(response => response.json()) // with our response, get the json data returned
 .then(data =>{
-    console.log(data)
     let card_deck = document.getElementById("index_deck")
 
     // =========================== CARD 1 ============================

@@ -84,7 +84,7 @@ admin_button.addEventListener("click", function()
         orders_text.className = "nav-link"
         orders_text.id = "nav-orders"
         orders_text.style = "color: blue;"
-        orders_text.href = "#Orders"
+        orders_text.href = "#orders"
 
 
         let orders_bold = document.createElement("strong")
@@ -112,14 +112,47 @@ admin_button.addEventListener("click", function()
         navbar.appendChild(navbar_btn)
 
 
-        let temp = document.getElementById("Orders")
-        temp.className = "container border"
+        let orders_table_div = document.getElementById("orders-table-div")
+        let orders_table = document.getElementById("orders")
+          let orders_title = document.createElement("h3")
+          orders_title.style = "text-align: center"
+          orders_title.innerHTML = "Orders <img src=\"http://localhost:3000/images/orders.svg\" style=\"width: 8%; margin-bottom: 0.5rem;\" alt=\"shopping bag icon\">"
+          orders_table_div.appendChild(orders_title)
+
+        if(orders_table == null)
+        {
+        // <table id="orders" class ="table table-striped table-bordered">
+        let orders_table = document.createElement("table")
+        orders_table.id = "orders"
+        orders_table.className = "table table-striped table-bordered"
+
+        // <tr></tr>
+        let table_row = document.createElement("tr")
+        orders_table.appendChild(table_row)
+
+        // <td>Name</td>
+        let table_data1 = document.createElement("td")
+        table_data1.innerHTML = "<strong>User</strong>"
+        table_row.appendChild(table_data1)
+
+        // <td>Price</td>
+        let table_data2 = document.createElement("td")
+        table_data2.innerHTML = "<strong>Shipping Address</strong>"
+        table_row.appendChild(table_data2)
+
+        // <td>Quantity</td>
+        let table_data3 = document.createElement("td")
+        table_data3.innerHTML = "<strong>Date Ordered</strong>"
+        table_row.appendChild(table_data3)
+
+        orders_table_div.appendChild(orders_table)
+        }
 
         fetch("http://localhost:8000/api/orders/?format=json") // make a request
         .then(response => response.json()) // with our response, get the json data returned
         .then(data =>{
             data.forEach(element =>{
-                let table = document.getElementById("orders-table") // Fetch the table above
+                let table = document.getElementById("orders") // Fetch the table above
                 let newRow = document.createElement("tr") // Add in a row <tr></tr>
                 table.appendChild(newRow) // Add the new row to table
 

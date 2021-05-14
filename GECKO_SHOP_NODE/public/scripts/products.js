@@ -251,6 +251,22 @@ function checkoutClick() {
     form.action = "."
     products_table_div.appendChild(form)
 
+    // ================ CUSTOMER NAME ==========================
+    // <label>Full Name:</label>
+    let cust_name = document.createElement("label")
+    cust_name.innerHTML = "Full Name: "
+    form.appendChild(cust_name)
+
+    // <input type="text" placeholder="Full Name" id="customer_name">
+    let cust_form_in = document.createElement("input")
+    cust_form_in.type = "text"
+    cust_form_in.placeholder = "Full Name"
+    cust_form_in.id = "customer_name"
+    form.appendChild(cust_form_in)
+    // =========================================================
+
+    let br2 = document.createElement("br")
+    form.appendChild(br2)
 
     // ================ SHIPPING ADDRESS ==========================
     // <label for="shipping_addr">Shipping Address:</label>
@@ -267,6 +283,24 @@ function checkoutClick() {
     form_input.id = "shippping_addr_input"
     form.appendChild(form_input)
     // =========================================================
+
+    let br3 = document.createElement("br")
+    form.appendChild(br3)
+
+    // ================ PHONE NUMBERS ==========================
+    // <label>Phone Number:</label>
+    let cust_ph = document.createElement("label")
+    cust_ph.innerHTML = "Phone Number: "
+    form.appendChild(cust_ph)
+
+    // <input type="text" placeholder="Phone Number" id="customer_phone">
+    let cust_form_in2 = document.createElement("input")
+    cust_form_in2.type = "text"
+    cust_form_in2.placeholder = "Phone Number"
+    cust_form_in2.id = "customer_phone"
+    form.appendChild(cust_form_in2)
+    // =========================================================
+
 }
 else {
   let result = confirm("Do you wish to complete you order?")

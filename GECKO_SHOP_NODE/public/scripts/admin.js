@@ -84,6 +84,7 @@ admin_button.addEventListener("click", function()
         orders_text.className = "nav-link"
         orders_text.id = "nav-orders"
         orders_text.style = "color: blue;"
+        orders_text.href = "#Orders"
 
 
         let orders_bold = document.createElement("strong")
@@ -111,10 +112,33 @@ admin_button.addEventListener("click", function()
         navbar.appendChild(navbar_btn)
 
 
-        let temp = document.getElementById("temp-container")
+        let temp = document.getElementById("Orders")
         temp.className = "container border"
 
-        // http://localhost:8000/api/orders/
+        fetch("http://localhost:8000/api/orders/?format=json") // make a request
+        .then(response => response.json()) // with our response, get the json data returned
+        .then(data =>{
+            data.forEach(element =>{
+                let table = document.getElementById("orders-table") // Fetch the table above
+                let newRow = document.createElement("tr") // Add in a row <tr></tr>
+                table.appendChild(newRow) // Add the new row to table
+
+                let user = document.createElement("td")
+                fetch(element["user_id"]).then(response => response.json()).then(data => user.innerHTML = data["username"])
+                user.innerHTML = element["user_id"]
+                newRow.appendChild(user)
+
+                let shipping_addr = document.createElement("td") // Create <td>Inner html</td>
+                shipping_addr.innerHTML = element["shipping_addr"]
+                newRow.appendChild(shipping_addr)
+
+                let date_created = document.createElement("td")
+                date_created.innerHTML = element["date_created"]
+                newRow.appendChild(date_created)
+
+
+            });
+        }); // log the json data
 
   }, true)
   }
